@@ -69,7 +69,7 @@ export function Services() {
               />
               
               <div className="relative z-10">
-                <service.icon className="w-10 h-10 text-hv-blue-electric mb-8 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
+                <service.icon className="w-10 h-10 text-hv-white mb-8 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
                 <h3 className="text-2xl font-bold text-hv-white mb-4">
                   {service.title}
                 </h3>
