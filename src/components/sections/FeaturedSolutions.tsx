@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronRight, Layout, Clock, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import hubotDashboardAsset from "@/assets/hubot-dashboard.webp.asset.json";
+
 
 const solutions = [
   {
