@@ -37,7 +37,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mx-auto max-w-5xl text-[clamp(2.5rem,8vw,100px)] font-bold tracking-tight text-hv-white leading-[1.1]"
         >
-          IDEIAS QUE MOVEM NEGÓCIOS.
+          IDEIAS QUE MOVEM NEGÓCIOS
         </motion.h1>
 
         <motion.p
