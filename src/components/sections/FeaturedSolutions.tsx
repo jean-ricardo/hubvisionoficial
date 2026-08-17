@@ -1,32 +1,50 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ChevronRight, Layout, Clock, TrendingUp } from "lucide-react";
+import { ChevronRight, Layout, Clock, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const solutions = [
   {
     id: "hubot",
     name: "HUBOT",
-    benefit: "Atendimento inteligente que nunca para",
-    description: "Automação de diálogos com inteligência artificial para escalar seu suporte e vendas 24/7.",
+    benefit: "HUBOT — a estrutura por trás de empresas que querem crescer.",
+    description: "Muito mais que um chatbot. O HUBOT centraliza o atendimento no WhatsApp, organiza equipes, automatiza processos e conecta sua operação a sistemas como TOTVS Protheus, CRMs e planilhas — tudo em uma única plataforma.",
     icon: <Layout className="w-6 h-6" />,
-    features: ["IA Conversacional", "Omnichannel", "Integração CRM"],
+    features: [
+      "Atendimento multi-atendente no WhatsApp",
+      "Kanban e gestão de equipe",
+      "Dashboard de métricas",
+      "Integração com TOTVS Protheus",
+      "Emissão de boletos e notas fiscais"
+    ],
   },
   {
     id: "horapoint",
-    name: "HORAPOINT",
-    benefit: "Gestão de tempo com precisão estratégica",
-    description: "Controle de ponto e gestão de jornada com foco em conformidade e produtividade.",
+    name: "HoraPoint",
+    benefit: "HoraPoint — controle real sobre horas, OS e faturamento.",
+    description: "Plataforma multi-tenant que unifica o ciclo de serviços, do apontamento de horas ao faturamento. O cliente aprova ou rejeita horas diretamente no portal, eliminando divergências, enquanto o sistema protege cada ordem de serviço contra alterações indevidas.",
     icon: <Clock className="w-6 h-6" />,
-    features: ["Reconhecimento Facial", "Geolocalização", "Relatórios Fiscais"],
+    features: [
+      "Aprovação de horas pelo cliente",
+      "Bloqueio anti-fraude na OS",
+      "Isolamento seguro multiempresa",
+      "Aceite automático por prazo",
+      "Exportação em lote para ERP"
+    ],
   },
   {
-    id: "hubvendas",
-    name: "Hub Vendas",
-    benefit: "Potencialize sua conversão comercial",
-    description: "Ferramentas integradas para gerenciar leads, acelerar o funil e fechar mais negócios.",
-    icon: <TrendingUp className="w-6 h-6" />,
-    features: ["Automação de Leads", "Dashboard Real-time", "Pipeline Flexível"],
+    id: "regua",
+    name: "Régua de Cobrança",
+    benefit: "Régua de Cobrança — o dinheiro entra no caixa no tempo certo.",
+    description: "Um assistente financeiro automatizado que cobra por você. Você define os pontos exatos da régua — 3, 10, 15 dias de atraso, por exemplo — e o sistema dispara a cobrança no WhatsApp com a 2ª via do boleto já em anexo, sempre em dias úteis.",
+    icon: <Receipt className="w-6 h-6" />,
+    features: [
+      "Régua 100% personalizável",
+      "Disparo automático no ponto exato",
+      "2ª via de boleto em PDF anexada",
+      "Operação só em dias úteis",
+      "Torre de Controle com histórico completo"
+    ],
   },
 ];
 
@@ -90,25 +108,27 @@ export const FeaturedSolutions = () => {
                     {solutions[activeTab].icon}
                   </div>
                   <div>
-                    <h3 className="text-3xl font-bold text-hv-white mb-2">
+                    <h3 className="text-3xl font-bold text-hv-white mb-4">
                       {solutions[activeTab].name}
                     </h3>
                     <p className="text-hv-blue-electric text-xl font-medium mb-4">
                       {solutions[activeTab].benefit}
                     </p>
-                    <p className="text-hv-text-secondary text-lg leading-relaxed">
+                    <p className="text-hv-text-secondary text-lg leading-relaxed mb-6">
                       {solutions[activeTab].description}
                     </p>
                   </div>
 
-                  <ul className="space-y-3">
+                  <div className="flex flex-wrap gap-2">
                     {solutions[activeTab].features.map((feature, i) => (
-                      <li key={i} className="flex items-center text-hv-white">
-                        <ChevronRight className="w-4 h-4 text-hv-blue-electric mr-2" />
+                      <span 
+                        key={i} 
+                        className="px-3 py-1 text-xs font-medium bg-hv-bg-highlight/50 text-hv-white rounded-full border border-white/10"
+                      >
                         {feature}
-                      </li>
+                      </span>
                     ))}
-                  </ul>
+                  </div>
 
                   <Button variant="primary" size="lg" className="mt-8">
                     Saiba mais
