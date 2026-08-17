@@ -36,37 +36,45 @@ export function Header() {
           : "bg-transparent py-6"
       )}
     >
-      <div className="container mx-auto flex items-center justify-between px-6">
-        <Link to="/" className="flex items-center">
+      <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
+        <Link to="/" className="flex items-center shrink-0">
           <img
             src={logoAsset.url}
             alt="Hubvision"
-            className="h-9 w-auto md:h-11"
+            className="h-7 w-auto sm:h-8 md:h-10 lg:h-11 transition-all"
           />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-hv-text-secondary transition-colors hover:text-hv-white"
+              className="text-xs xl:text-sm font-medium text-hv-text-secondary transition-colors hover:text-hv-white whitespace-nowrap"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <Button variant="primary" size="sm">
+        <div className="hidden md:flex items-center gap-4 shrink-0">
+          <Button variant="primary" size="sm" className="hidden lg:inline-flex">
             Fale conosco
           </Button>
+          
+          {/* Mobile Toggle inside the flex div for md screens */}
+          <button
+            className="lg:hidden text-hv-white p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle for small screens (< md) */}
         <button
-          className="md:hidden text-hv-white"
+          className="md:hidden text-hv-white p-2 shrink-0"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
