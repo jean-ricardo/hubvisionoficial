@@ -185,7 +185,7 @@ export const FeaturedSolutions = () => {
               </AnimatePresence>
 
               
-              {activeTab !== 0 && (
+              {activeTab === 1 && (
                 <>
                   {/* Floating UI Elements */}
                   <motion.div
