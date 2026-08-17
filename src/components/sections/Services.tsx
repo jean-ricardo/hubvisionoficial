@@ -64,7 +64,7 @@ export function Services() {
             >
               {/* Background Image */}
               <div 
-                className="absolute inset-0 z-0 opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-700 bg-cover bg-center grayscale mix-blend-overlay"
+                className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700 bg-cover bg-center grayscale mix-blend-overlay"
                 style={{ backgroundImage: `url(${service.bgImage})` }}
               />
               
