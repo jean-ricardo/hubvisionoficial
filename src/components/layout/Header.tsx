@@ -41,7 +41,7 @@ export function Header() {
           <img
             src={logoAsset.url}
             alt="Hubvision"
-            className="w-[150px] h-auto md:w-[190px]"
+            className="h-9 w-auto md:h-11"
           />
         </Link>
 
