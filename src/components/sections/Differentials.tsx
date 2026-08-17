@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const differentials = [
   {
-    title: "Visão de negócio",
+    title: "Visão de\nnegócio\n",
     description: "Entendemos a dor antes de propor a tecnologia. Soluções que falam a língua do ROI.",
   },
   {
