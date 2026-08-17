@@ -171,7 +171,7 @@ export const FeaturedSolutions = () => {
                     className="text-hv-text-muted text-sm font-mono flex flex-col items-center gap-4"
                   >
                     <div className="w-48 h-32 bg-hv-bg-highlight/50 rounded flex items-center justify-center">
-                       [ Mockup {solutions[activeTab].name} ] {/* TODO: Content - Replace with real product screenshot */}
+                       [ Mockup {solutions[activeTab]?.name ?? ""} ] {/* TODO: Content - Replace with real product screenshot */}
                     </div>
                     <div className="space-y-2 w-full max-w-xs">
                       <div className="h-2 w-3/4 bg-white/5 rounded" />
