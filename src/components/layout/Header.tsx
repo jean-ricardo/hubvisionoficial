@@ -37,10 +37,12 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold tracking-tight text-hv-white">
-            HUB<span className="text-hv-blue">VISION</span>
-          </span>
+        <Link to="/" className="flex items-center">
+          <img
+            src={logoAsset.url}
+            alt="Hubvision"
+            className="h-8 w-auto md:h-10"
+          />
         </Link>
 
         {/* Desktop Nav */}
