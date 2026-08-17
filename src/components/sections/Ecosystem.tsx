@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
-const nodes = [
+const desktopNodes = [
   { id: "hubvision", label: "Hubvision", x: 50, y: 50, size: 80, isMain: true },
   { id: "hubot", label: "HUBOT", x: 25, y: 25, size: 60 },
   { id: "horapoint", label: "HORAPOINT", x: 75, y: 25, size: 60 },
@@ -9,6 +9,16 @@ const nodes = [
   { id: "totvs", label: "TOTVS", x: 20, y: 70, size: 60 },
   { id: "cloud", label: "Cloud", x: 50, y: 15, size: 50 },
   { id: "api", label: "API", x: 50, y: 85, size: 50 },
+];
+
+const mobileNodes = [
+  { id: "hubvision", label: "Hubvision", x: 50, y: 50, size: 80, isMain: true },
+  { id: "hubot", label: "HUBOT", x: 15, y: 30, size: 60 },
+  { id: "horapoint", label: "HORAPOINT", x: 85, y: 30, size: 60 },
+  { id: "hubvendas", label: "Hub Vendas", x: 85, y: 70, size: 60 },
+  { id: "totvs", label: "TOTVS", x: 15, y: 70, size: 60 },
+  { id: "cloud", label: "Cloud", x: 50, y: 10, size: 50 },
+  { id: "api", label: "API", x: 50, y: 90, size: 50 },
 ];
 
 const connections = [
@@ -22,7 +32,17 @@ const connections = [
 
 export const Ecosystem = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+  const [isMobile, setIsMobile] = useRef(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile.current = window.innerWidth < 768;
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const nodes = isMobile.current ? mobileNodes : desktopNodes;
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center bg-hv-bg-primary py-24 px-6 overflow-hidden">

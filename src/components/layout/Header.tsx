@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { clsx } from "clsx";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
   { label: "A Hubvision", href: "#" },
@@ -68,22 +69,42 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-hv-bg-primary border-b border-hv-border p-6 flex flex-col gap-4 md:hidden animate-in fade-in slide-in-from-top-4">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-lg font-medium text-hv-text-secondary"
-              onClick={() => setIsMobileMenuOpen(false)}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 z-40 flex flex-col bg-hv-bg-primary pt-24 px-6 md:hidden"
+          >
+            <nav className="flex flex-col gap-6">
+              {NAV_LINKS.map((link, idx) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + idx * 0.05 }}
+                  className="text-2xl font-bold text-hv-white border-b border-hv-border pb-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </nav>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mt-auto mb-12"
             >
-              {link.label}
-            </a>
-          ))}
-          <Button className="w-full mt-4">Fale conosco</Button>
-        </div>
-      )}
+              <Button className="w-full h-16 text-lg">Fale conosco</Button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

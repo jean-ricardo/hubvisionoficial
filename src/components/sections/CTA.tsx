@@ -32,7 +32,7 @@ export const CTA = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-hv-white mb-8 leading-tight">
+          <h2 className="text-[clamp(2rem,7vw,4.5rem)] font-bold text-hv-white mb-8 leading-tight">
             Temos uma ideia. E ela pode transformar seu negócio.
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">

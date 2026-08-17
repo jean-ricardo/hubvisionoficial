@@ -50,8 +50,8 @@ export const Future = () => {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="space-y-8"
         >
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-hv-white tracking-tight leading-none">
-            O futuro não espera. <br />
+          <h2 className="text-[clamp(2.5rem,8vw,6rem)] font-bold text-hv-white tracking-tight leading-[1.1]">
+            O futuro não espera. <br className="hidden md:block" />
             <span className="text-hv-blue-electric">Nós também não.</span>
           </h2>
           <p className="text-xl md:text-2xl text-hv-text-secondary max-w-3xl mx-auto leading-relaxed">

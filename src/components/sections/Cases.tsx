@@ -48,7 +48,7 @@ export const Cases = () => {
         </motion.p>
       </div>
 
-      <div className="flex gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide no-scrollbar px-6 -mx-6 md:px-0 md:mx-0">
+      <div className="flex gap-4 md:gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide no-scrollbar px-6 -mx-6 md:px-0 md:mx-0">
         {cases.map((item, index) => (
           <motion.div
             key={item.id}
@@ -56,7 +56,7 @@ export const Cases = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: index * 0.2 }}
-            className="min-w-[85vw] md:min-w-[70vw] lg:min-w-[800px] aspect-[16/9] relative rounded-2xl overflow-hidden snap-center group"
+            className="min-w-[90vw] md:min-w-[70vw] lg:min-w-[800px] aspect-[4/5] md:aspect-[16/9] relative rounded-2xl overflow-hidden snap-center group"
           >
             {/* Background Image */}
             <div 
@@ -67,13 +67,13 @@ export const Cases = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/80 to-transparent opacity-90 group-hover:opacity-85 transition-opacity" />
             
             {/* Content */}
-            <div className="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+            <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end">
               <div className="max-w-3xl">
                 <span className="inline-block px-4 py-1 rounded-full bg-hv-blue-electric/20 border border-hv-blue-electric/30 text-hv-blue-electric text-sm font-semibold mb-6">
                   Case: {item.client}
                 </span>
                 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                   <div className="space-y-4">
                     <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold">O Desafio</h4>
                     <p className="text-hv-white text-lg">{item.challenge}</p>
@@ -84,10 +84,10 @@ export const Cases = () => {
                   </div>
                 </div>
 
-                <div className="mt-12 flex flex-col md:flex-row md:items-center justify-between gap-8 pt-8 border-t border-white/10">
+                <div className="mt-8 md:mt-12 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 pt-8 border-t border-white/10">
                   <div>
                     <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold mb-2">Resultado</h4>
-                    <p className="text-3xl font-bold text-hv-blue-electric">{item.result}</p>
+                    <p className="text-2xl md:text-3xl font-bold text-hv-blue-electric">{item.result}</p>
                   </div>
                   <Button variant="secondary" className="group/btn">
                     Ver case completo

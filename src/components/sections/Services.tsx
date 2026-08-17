@@ -48,7 +48,7 @@ export function Services() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-hv-border border border-hv-border rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-px bg-transparent md:bg-hv-border border-none md:border md:border-hv-border rounded-2xl overflow-hidden">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -56,19 +56,15 @@ export function Services() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative bg-hv-bg-surface p-12 transition-all duration-500 hover:bg-hv-bg-highlight"
+              className="group relative bg-hv-bg-surface p-8 md:p-12 transition-all duration-500 hover:bg-hv-bg-highlight rounded-2xl md:rounded-none"
             >
               <div className="relative z-10">
                 <service.icon className="w-10 h-10 text-hv-blue-electric mb-8 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
                 <h3 className="text-2xl font-bold text-hv-white mb-4">
                   {service.title}
                 </h3>
-                <p className="text-hv-text-secondary leading-relaxed transition-all duration-500 group-hover:text-hv-white max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 overflow-hidden">
+                <p className="text-hv-text-secondary leading-relaxed transition-all duration-500 group-hover:text-hv-white md:max-h-0 md:opacity-0 md:group-hover:max-h-24 md:group-hover:opacity-100 overflow-hidden">
                   {service.description}
-                </p>
-                {/* Visual cue for mobile/non-hover */}
-                <p className="text-hv-text-secondary leading-relaxed group-hover:hidden block">
-                  {service.description.split('.')[0]}.
                 </p>
               </div>
 

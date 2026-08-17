@@ -34,7 +34,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mx-auto max-w-5xl text-5xl font-bold tracking-tight text-hv-white md:text-7xl lg:text-[100px] lg:leading-[1.1]"
+          className="mx-auto max-w-5xl text-[clamp(2.5rem,8vw,100px)] font-bold tracking-tight text-hv-white leading-[1.1]"
         >
           IDEIAS QUE MOVEM NEGÓCIOS.
         </motion.h1>
