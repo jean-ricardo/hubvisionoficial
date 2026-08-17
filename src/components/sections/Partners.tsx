@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const partners = [
-  { name: "TOTVS", logo: "[ Logo ]" },
+  { name: "TOTVS", logo: "[ Logo ]" }, // TODO: Content - Replace with real SVG logos
   { name: "AWS", logo: "[ Logo ]" },
   { name: "Google Cloud", logo: "[ Logo ]" },
   { name: "RD Station", logo: "[ Logo ]" },

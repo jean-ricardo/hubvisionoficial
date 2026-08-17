@@ -26,7 +26,7 @@ export const Cases = () => {
   const containerRef = useRef(null);
 
   return (
-    <section className="bg-hv-bg-primary py-24 px-6 overflow-hidden">
+    <section id="cases" className="bg-hv-bg-primary py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto mb-16">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

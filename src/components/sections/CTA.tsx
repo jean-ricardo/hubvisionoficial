@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export const CTA = () => {
   return (
-    <section className="bg-hv-blue py-32 px-6 overflow-hidden relative">
+    <section id="contact" className="bg-hv-blue py-32 px-6 overflow-hidden relative">
       {/* Background Micro-animations */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full opacity-30">

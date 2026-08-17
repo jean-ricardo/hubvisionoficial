@@ -111,7 +111,7 @@ export const FeaturedSolutions = () => {
                   </ul>
 
                   <Button variant="primary" size="lg" className="mt-8">
-                    Ver detalhes
+                    Saiba mais
                   </Button>
                 </motion.div>
               )}

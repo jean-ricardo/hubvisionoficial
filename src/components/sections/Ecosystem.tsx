@@ -107,7 +107,7 @@ export const Ecosystem = () => {
                 fill={node.isMain ? "var(--hv-blue)" : "var(--hv-bg-surface)"}
                 stroke={node.isMain ? "var(--hv-blue-electric)" : "rgba(255,255,255,0.1)"}
                 strokeWidth="0.5"
-                className={node.isMain ? "shadow-[0_0_20px_rgba(51,104,232,0.5)]" : ""}
+                className={node.isMain ? "shadow-[0_0_20px_rgba(51,104,232,0.5)] will-change-transform" : "will-change-transform"}
               />
               {node.isMain && (
                 <circle

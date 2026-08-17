@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-hv-bg-primary pt-20">
       {/* Background Gradients & Glows */}
@@ -13,7 +14,7 @@ export function Hero() {
           }}
         />
         <motion.div
-          animate={{
+          animate={shouldReduceMotion ? { opacity: 0.4 } : {
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
           }}

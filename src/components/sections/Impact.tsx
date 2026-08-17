@@ -2,8 +2,8 @@ import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { label: "Clientes", value: 150, suffix: "+" },
-  { label: "Interações", value: 500000, suffix: "+" },
+  { label: "Clientes atendidos", value: 150, suffix: "+" }, // TODO: Content - Verify real numbers
+  { label: "Interações inteligentes", value: 500000, suffix: "+" }, // TODO: Content - Verify real numbers
   { label: "Projetos entregues", value: 200, suffix: "+" },
   { label: "Economia gerada", value: 30, suffix: "%" },
 ];
