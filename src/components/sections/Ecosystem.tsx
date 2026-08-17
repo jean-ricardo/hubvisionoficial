@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const desktopNodes = [
   { id: "hubvision", label: "Hubvision", x: 50, y: 50, size: 80, isMain: true },
@@ -33,16 +33,16 @@ const connections = [
 export const Ecosystem = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
-  const [isMobile, setIsMobile] = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile.current = window.innerWidth < 768;
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const nodes = isMobile.current ? mobileNodes : desktopNodes;
+  const nodes = isMobile ? mobileNodes : desktopNodes;
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center bg-hv-bg-primary py-24 px-6 overflow-hidden">
