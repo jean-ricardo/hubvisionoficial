@@ -45,7 +45,7 @@ export const Ecosystem = () => {
   const nodes = isMobile ? mobileNodes : desktopNodes;
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center bg-hv-bg-primary py-24 px-6 overflow-hidden">
+    <section id="ecosystem" ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center bg-hv-bg-primary py-24 px-6 overflow-hidden">
       <div className="max-w-7xl w-full text-center z-10 mb-16">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
