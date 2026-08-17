@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { clsx } from "clsx";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoAsset from "@/assets/hubvision-logo-white.png.asset.json";
+
 
 const NAV_LINKS = [
   { label: "A Hubvision", href: "#manifesto" },
