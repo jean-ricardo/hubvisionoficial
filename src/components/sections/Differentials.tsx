@@ -55,8 +55,8 @@ export const Differentials = () => {
               className="group"
             >
               <h3 className="text-4xl lg:text-5xl font-bold text-hv-text-on-light mb-6 group-hover:text-hv-blue transition-colors">
-                {item.title.split(' ').map((word, i) => (
-                  <span key={i} className="block">{word}</span>
+                {item.title.split('\n').map((line, i) => (
+                  <span key={i} className="block">{line}</span>
                 ))}
               </h3>
               <p className="text-hv-bg-surface/80 text-lg leading-relaxed max-w-sm border-l-2 border-hv-blue pl-6 group-hover:border-hv-blue-electric transition-colors">
