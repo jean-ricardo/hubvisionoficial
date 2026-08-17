@@ -1,37 +1,11 @@
 import { motion, useReducedMotion } from "framer-motion";
 
-const floatingWords = ["IA", "AUTOMATION", "DATA", "CLOUD", "SCALABILITY", "FUTURE", "INNOVATION"];
-
 export const Future = () => {
   const shouldReduceMotion = useReducedMotion();
   return (
     <section className="bg-hv-bg-primary py-32 md:py-48 px-6 overflow-hidden relative">
       {/* Cinematic Background Motion */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
-        {!shouldReduceMotion && floatingWords.map((word, index) => (
-          <motion.span
-            key={index}
-            initial={{ 
-              x: `${Math.random() * 100}%`, 
-              y: `${Math.random() * 100}%`,
-              opacity: 0.05
-            }}
-            animate={{ 
-              x: [`${Math.random() * 100}%`, `${Math.random() * 100}%`],
-              y: [`${Math.random() * 100}%`, `${Math.random() * 100}%`],
-              opacity: [0.05, 0.15, 0.05]
-            }}
-            transition={{ 
-              duration: 20 + Math.random() * 30, 
-              repeat: Infinity, 
-              ease: "linear" 
-            }}
-            className="absolute text-hv-white font-bold text-6xl md:text-9xl tracking-tighter whitespace-nowrap"
-          >
-            {word}
-          </motion.span>
-        ))}
-        
         {/* Glow Spheres */}
         <motion.div 
           animate={shouldReduceMotion ? { opacity: 0.15 } : { 
