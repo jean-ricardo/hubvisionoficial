@@ -7,8 +7,8 @@ const solutions = [
   {
     id: "hubot",
     name: "HUBOT",
-    benefit: "HUBOT — a estrutura por trás de empresas que querem crescer.",
-    description: "Muito mais que um chatbot. O HUBOT centraliza o atendimento no WhatsApp, organiza equipes, automatiza processos e conecta sua operação a sistemas como TOTVS Protheus, CRMs e planilhas — tudo em uma única plataforma.",
+    benefit: "HUBOT - A estrutura por trás de empresas que querem crescer.",
+    description: "Muito mais que um chatbot. O HUBOT centraliza o atendimento no WhatsApp, organiza equipes, automatiza processos e conecta sua operação a sistemas como TOTVS Protheus, CRMs e planilhas. Tudo em uma única plataforma.",
     icon: <Layout className="w-6 h-6" />,
     features: [
       "Atendimento multi-atendente no WhatsApp",
