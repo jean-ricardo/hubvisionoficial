@@ -60,12 +60,12 @@ export const FeaturedSolutions = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content Column */}
           <div className="space-y-8">
-            <div className="flex flex-wrap gap-4 mb-8">
+            <div className="flex flex-wrap gap-2 md:gap-4 mb-8">
               {solutions.map((sol, idx) => (
                 <button
                   key={sol.id}
                   onClick={() => setActiveTab(idx)}
-                  className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 border ${
+                  className={`flex-1 min-w-[100px] md:flex-none px-4 md:px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 border ${
                     activeTab === idx
                       ? "bg-hv-blue border-hv-blue-electric text-hv-white shadow-[0_0_20px_rgba(40,88,216,0.3)]"
                       : "bg-transparent border-white/10 text-hv-text-secondary hover:border-white/30"

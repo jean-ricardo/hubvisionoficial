@@ -12,7 +12,7 @@ export function Transformation() {
   const steps = ["IDEIA", "TECNOLOGIA", "SOLUÇÃO", "RESULTADO"];
 
   return (
-    <div ref={containerRef} className="relative h-[400vh]">
+    <div ref={containerRef} className="relative h-[300vh] md:h-[400vh]">
       <section className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden bg-hv-bg-secondary">
         {/* Glow effect */}
         <div className="absolute inset-0 pointer-events-none">
@@ -48,7 +48,7 @@ export function Transformation() {
                 <motion.h2
                   key={step}
                   style={{ opacity, scale }}
-                  className="absolute text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter text-hv-white whitespace-nowrap"
+                  className="absolute text-[clamp(2.5rem,12vw,9rem)] font-bold tracking-tighter text-hv-white whitespace-nowrap uppercase"
                 >
                   {step}
                 </motion.h2>

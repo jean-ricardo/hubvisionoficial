@@ -51,7 +51,7 @@ export function Manifesto() {
           viewport={{ once: true, margin: "-100px" }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-hv-white mb-12 leading-tight">
+          <h2 className="text-[clamp(2rem,6vw,4.5rem)] font-bold tracking-tight text-hv-white mb-12 leading-tight">
             {words.map((word, i) => (
               <motion.span
                 key={i}

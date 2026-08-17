@@ -29,7 +29,7 @@ export const Differentials = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-hv-text-on-light"
+            className="text-[clamp(2rem,6vw,4rem)] font-bold mb-6 text-hv-text-on-light"
           >
             O que nos torna diferentes?
           </motion.h2>

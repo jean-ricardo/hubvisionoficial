@@ -41,7 +41,7 @@ export const Integrations = () => {
           {/* Connection Lines Background */}
           <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-hv-blue/20 to-transparent -translate-y-1/2 z-0 hidden md:block" />
           
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 relative z-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 relative z-10">
             {nodes.map((node, index) => (
               <motion.div
                 key={node.id}
