@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { clsx } from "clsx";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoAsset from "@/assets/hubvision-logo-white.png.asset.json";
+
 
 const NAV_LINKS = [
   { label: "A Hubvision", href: "#manifesto" },
@@ -35,10 +37,12 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold tracking-tight text-hv-white">
-            HUB<span className="text-hv-blue">VISION</span>
-          </span>
+        <Link to="/" className="flex items-center">
+          <img
+            src={logoAsset.url}
+            alt="Hubvision"
+            className="h-9 w-auto md:h-11"
+          />
         </Link>
 
         {/* Desktop Nav */}
