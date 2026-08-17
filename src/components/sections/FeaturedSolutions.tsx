@@ -141,16 +141,27 @@ export const FeaturedSolutions = () => {
           </div>
 
           {/* Mockup Column */}
-          <div className="relative aspect-[4/3] rounded-2xl bg-hv-bg-secondary border border-white/10 p-4 shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-8 flex items-center px-4 gap-2 border-b border-white/5">
+          <div className="relative aspect-[4/3] rounded-2xl bg-hv-bg-secondary border border-white/10 p-4 shadow-2xl overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-8 flex items-center px-4 gap-2 border-b border-white/5 z-10">
               <div className="w-2 h-2 rounded-full bg-red-500/50" />
               <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
               <div className="w-2 h-2 rounded-full bg-green-500/50" />
             </div>
             
-            <div className="mt-8 w-full h-full bg-hv-bg-surface/50 rounded-lg overflow-hidden relative flex items-center justify-center border border-white/5">
+            <div className="mt-8 w-full h-[calc(100%-2rem)] bg-hv-bg-surface/50 rounded-lg overflow-hidden relative flex items-center justify-center border border-white/5">
               <AnimatePresence mode="wait">
-                {solutions[activeTab] && (
+                {activeTab === 0 ? (
+                  <motion.img
+                    key="hubot-dashboard"
+                    src={hubotDashboardAsset.url}
+                    alt="Dashboard do HUBOT mostrando estatísticas e atendimentos em tempo real"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full h-full object-cover object-left-top"
+                  />
+                ) : (
                   <motion.div
                     key={activeTab}
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -171,22 +182,26 @@ export const FeaturedSolutions = () => {
                 )}
               </AnimatePresence>
               
-              {/* Floating UI Elements */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/4 right-1/4 w-24 h-24 rounded-lg bg-hv-blue/20 backdrop-blur-sm border border-hv-blue/30 z-20 flex items-center justify-center"
-              >
-                <div className="w-12 h-2 bg-hv-blue-electric/40 rounded" />
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-1/4 left-1/4 w-32 h-16 rounded-lg bg-hv-bg-highlight/40 backdrop-blur-sm border border-white/10 z-20 flex flex-col gap-2 p-3"
-              >
-                <div className="w-full h-1 bg-white/10 rounded" />
-                <div className="w-2/3 h-1 bg-white/10 rounded" />
-              </motion.div>
+              {activeTab !== 0 && (
+                <>
+                  {/* Floating UI Elements */}
+                  <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-1/4 right-1/4 w-24 h-24 rounded-lg bg-hv-blue/20 backdrop-blur-sm border border-hv-blue/30 z-20 flex items-center justify-center"
+                  >
+                    <div className="w-12 h-2 bg-hv-blue-electric/40 rounded" />
+                  </motion.div>
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-1/4 left-1/4 w-32 h-16 rounded-lg bg-hv-bg-highlight/40 backdrop-blur-sm border border-white/10 z-20 flex flex-col gap-2 p-3"
+                  >
+                    <div className="w-full h-1 bg-white/10 rounded" />
+                    <div className="w-2/3 h-1 bg-white/10 rounded" />
+                  </motion.div>
+                </>
+              )}
             </div>
           </div>
         </div>
