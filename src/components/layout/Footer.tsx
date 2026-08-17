@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Linkedin, Twitter, Mail } from "lucide-react";
+import { Mail, ArrowRight } from "lucide-react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,15 +17,12 @@ export const Footer = () => {
               Transformamos ideias em soluções de tecnologia que conectam pessoas, processos e negócios.
             </p>
             <div className="flex gap-4">
-              {[Linkedin, Twitter, Github, Mail].map((Icon, i) => (
-                <a 
-                  key={i} 
-                  href="#" 
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-hv-text-muted hover:text-hv-blue-electric hover:border-hv-blue-electric/50 transition-all"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-hv-text-muted hover:text-hv-blue-electric hover:border-hv-blue-electric/50 transition-all"
+              >
+                <Mail size={18} />
+              </a>
             </div>
           </div>
 
