@@ -1,13 +1,14 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const floatingWords = ["IA", "AUTOMATION", "DATA", "CLOUD", "SCALABILITY", "FUTURE", "INNOVATION"];
 
 export const Future = () => {
+  const shouldReduceMotion = useReducedMotion();
   return (
     <section className="bg-hv-bg-primary py-32 md:py-48 px-6 overflow-hidden relative">
       {/* Cinematic Background Motion */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
-        {floatingWords.map((word, index) => (
+        {!shouldReduceMotion && floatingWords.map((word, index) => (
           <motion.span
             key={index}
             initial={{ 
@@ -33,12 +34,12 @@ export const Future = () => {
         
         {/* Glow Spheres */}
         <motion.div 
-          animate={{ 
+          animate={shouldReduceMotion ? { opacity: 0.15 } : { 
             scale: [1, 1.2, 1],
             opacity: [0.1, 0.2, 0.1]
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-hv-blue-electric/20 rounded-full blur-[150px]" 
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-hv-blue-electric/20 rounded-full blur-[150px] will-change-transform" 
         />
       </div>
 

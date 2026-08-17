@@ -10,8 +10,9 @@ export function WhoWeAre() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative aspect-square lg:aspect-[4/5] w-full bg-hv-bg-surface rounded-2xl overflow-hidden shadow-2xl group"
+            className="relative aspect-square lg:aspect-[4/5] w-full bg-hv-bg-surface rounded-2xl overflow-hidden shadow-2xl group border border-white/5"
           >
+            {/* TODO: Content - Replace with real team/office photography */}
             {/* Placeholder for real team photo */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--hv-blue-electric)_0%,transparent_70%)] opacity-20 group-hover:opacity-30 transition-opacity duration-700" />
             

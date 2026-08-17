@@ -76,8 +76,8 @@
   --hv-blue-electric: #3368E8;
 
   --hv-white: #FFFFFF;
-  --hv-text-secondary: #B9C3D8;
-  --hv-text-muted: #71809F;
+  --hv-text-secondary: #CBD5E1; /* Slate 300 for better contrast on dark */
+  --hv-text-muted: #94A3B8;     /* Slate 400 for better contrast on dark */
   --hv-text-on-light: #071329;
 
   --hv-border: rgba(255, 255, 255, 0.08);

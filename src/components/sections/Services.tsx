@@ -26,7 +26,7 @@ const services = [
 
 export function Services() {
   return (
-    <section className="relative w-full bg-hv-bg-primary py-32 overflow-hidden">
+    <section id="solutions" className="relative w-full bg-hv-bg-primary py-32 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="mb-20">
           <motion.h2

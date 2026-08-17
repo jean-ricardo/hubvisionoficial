@@ -42,7 +42,7 @@ export function Manifesto() {
   };
 
   return (
-    <section className="relative flex min-h-[80vh] w-full items-center justify-center bg-hv-bg-primary py-32 overflow-hidden">
+    <section id="manifesto" className="relative flex min-h-[80vh] w-full items-center justify-center bg-hv-bg-primary py-32 overflow-hidden">
       <div className="container mx-auto px-6 text-center">
         <motion.div
           variants={container}

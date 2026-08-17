@@ -6,11 +6,11 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
-  { label: "A Hubvision", href: "#" },
-  { label: "Soluções", href: "#" },
-  { label: "Ecossistema", href: "#" },
-  { label: "Cases", href: "#" },
-  { label: "Contato", href: "#" },
+  { label: "A Hubvision", href: "#manifesto" },
+  { label: "Soluções", href: "#solutions" },
+  { label: "Ecossistema", href: "#ecosystem" },
+  { label: "Cases", href: "#cases" },
+  { label: "Contato", href: "#contact" },
 ];
 
 export function Header() {
