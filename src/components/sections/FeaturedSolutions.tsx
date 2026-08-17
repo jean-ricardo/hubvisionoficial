@@ -152,11 +152,11 @@ export const FeaturedSolutions = () => {
             
             <div className="mt-8 w-full h-[calc(100%-2rem)] bg-hv-bg-surface/50 rounded-lg overflow-hidden relative flex items-center justify-center border border-white/5">
               <AnimatePresence mode="wait">
-                {activeTab === 0 ? (
+                {activeTab === 0 || activeTab === 2 ? (
                   <motion.img
-                    key="hubot-dashboard"
-                    src={hubotDashboardAsset.url}
-                    alt="Dashboard do HUBOT mostrando estatísticas e atendimentos em tempo real"
+                    key={activeTab === 0 ? "hubot-dashboard" : "regua-cobranca"}
+                    src={activeTab === 0 ? hubotDashboardAsset.url : reguaCobrancaAsset.url}
+                    alt={activeTab === 0 ? "Dashboard do HUBOT mostrando estatísticas e atendimentos em tempo real" : "Dashboard da Régua de Cobrança mostrando disparos e valor de cobrança do dia"}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.05 }}
@@ -183,6 +183,7 @@ export const FeaturedSolutions = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
+
               
               {activeTab !== 0 && (
                 <>
