@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, ArrowRight } from "lucide-react";
+import logoAsset from "@/assets/hubvision-logo-white.png.asset.json";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,8 +11,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           {/* Brand Info */}
           <div className="space-y-6">
-            <Link to="/" className="text-2xl font-bold text-white tracking-tighter">
-              HUBVISION<span className="text-hv-blue-electric">.</span>
+            <Link to="/" className="flex items-center">
+              <img 
+                src={logoAsset.url} 
+                alt="Hubvision" 
+                className="h-8 md:h-9 w-auto" 
+              />
             </Link>
             <p className="text-hv-text-muted leading-relaxed">
               Transformamos ideias em soluções de tecnologia que conectam pessoas, processos e negócios.
