@@ -6,7 +6,7 @@ const services = [
     title: "Automação",
     description: "Simplifique fluxos e reduza gargalos operacionais através de processos inteligentes.",
     icon: Cpu,
-    bgImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+    bgImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
   },
   {
     title: "Integração",
