@@ -39,7 +39,7 @@ export function Services() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-hv-white mb-6"
           >
-            Tecnologia para desafios reais.
+            Tecnologia para desafios reais
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, x: -20 }}

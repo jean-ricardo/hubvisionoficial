@@ -7,7 +7,7 @@ export function Manifesto() {
     { text: "começa", highlight: false },
     { text: "com", highlight: false },
     { text: "uma", highlight: false },
-    { text: "ideia.", highlight: true },
+    { text: "ideia", highlight: true },
   ];
 
   const supportText = "Mas uma ideia só ganha valor quando encontra tecnologia, pessoas e execução. É aí que entramos.";
