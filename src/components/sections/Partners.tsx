@@ -23,7 +23,7 @@ export const Partners = () => {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold mb-6 text-hv-white"
           >
-            Construímos conexões que ampliam possibilidades.
+            Construímos conexões que ampliam possibilidades
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

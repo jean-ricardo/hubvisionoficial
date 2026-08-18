@@ -27,7 +27,7 @@ const solutions = [
   {
     id: "horapoint",
     name: "HoraPoint",
-    benefit: "HoraPoint - controle real sobre horas, OS e faturamento.",
+    benefit: "HoraPoint - Controle real sobre horas, OS e faturamento.",
     description: "Plataforma multi-tenant que unifica o ciclo de serviços, do apontamento de horas ao faturamento. O cliente aprova ou rejeita horas diretamente no portal, eliminando divergências, enquanto o sistema protege cada ordem de serviço contra alterações indevidas.",
     icon: <Clock className="w-6 h-6" />,
     features: [

@@ -35,7 +35,7 @@ export const Cases = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold mb-6 text-hv-white"
         >
-          Quando tecnologia encontra o desafio certo.
+          Quando tecnologia encontra o desafio certo
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}

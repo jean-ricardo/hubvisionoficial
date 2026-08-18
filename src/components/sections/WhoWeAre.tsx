@@ -35,7 +35,7 @@ export function WhoWeAre() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-hv-text-on-light mb-8">
-              Somos a Hubvision.
+              Somos a HubVision
             </h2>
             <p className="text-xl md:text-2xl text-hv-bg-primary/80 leading-relaxed mb-8">
               Somos uma empresa de tecnologia que transforma ideias em soluções capazes de simplificar operações, conectar negócios e gerar resultados.
