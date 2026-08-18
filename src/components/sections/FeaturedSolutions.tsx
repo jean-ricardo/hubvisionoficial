@@ -41,7 +41,7 @@ const solutions = [
   {
     id: "regua",
     name: "Régua de Cobrança",
-    benefit: "Régua de Cobrança — o dinheiro entra no caixa no tempo certo.",
+    benefit: "Régua de Cobrança - O dinheiro entra no caixa no tempo certo.",
     description: "Um assistente financeiro automatizado que cobra por você. Você define os pontos exatos da régua\u00a0 3, 10, 15 dias de atraso, por exemplo\u00a0 e o sistema dispara a cobrança no WhatsApp com a 2ª via do boleto já em anexo, sempre em dias úteis.",
     icon: <Receipt className="w-6 h-6" />,
     features: [
