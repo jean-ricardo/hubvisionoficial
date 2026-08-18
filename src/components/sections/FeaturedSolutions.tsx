@@ -154,60 +154,31 @@ export const FeaturedSolutions = () => {
             
             <div className="mt-8 w-full h-[calc(100%-2rem)] bg-hv-bg-surface/50 rounded-lg overflow-hidden relative flex items-center justify-center border border-white/5">
               <AnimatePresence mode="wait">
-                {activeTab === 0 || activeTab === 2 ? (
-                  <motion.img
-                    key={activeTab === 0 ? "hubot-dashboard" : "regua-cobranca"}
-                    src={activeTab === 0 ? hubotDashboardAsset.url : reguaCobrancaAsset.url}
-                    alt={activeTab === 0 ? "Dashboard do HUBOT mostrando estatísticas e atendimentos em tempo real" : "Dashboard da Régua de Cobrança mostrando disparos e valor de cobrança do dia"}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.5 }}
-                    className="w-full h-full object-cover object-left-top"
-                  />
-                ) : (
-                  <motion.div
-                    key={activeTab}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-hv-text-muted text-sm font-mono flex flex-col items-center gap-4"
-                  >
-                    <div className="w-48 h-32 bg-hv-bg-highlight/50 rounded flex items-center justify-center">
-                       [ Mockup {solutions[activeTab]?.name ?? ""} ] {/* TODO: Content - Replace with real product screenshot */}
-                    </div>
-                    <div className="space-y-2 w-full max-w-xs">
-                      <div className="h-2 w-3/4 bg-white/5 rounded" />
-                      <div className="h-2 w-1/2 bg-white/5 rounded" />
-                      <div className="h-2 w-2/3 bg-white/5 rounded" />
-                    </div>
-                  </motion.div>
-                )}
+                <motion.img
+                  key={activeTab}
+                  src={
+                    activeTab === 0
+                      ? hubotDashboardAsset.url
+                      : activeTab === 1
+                        ? horapointAsset.url
+                        : reguaCobrancaAsset.url
+                  }
+                  alt={
+                    activeTab === 0
+                      ? "Dashboard do HUBOT mostrando estatísticas e atendimentos em tempo real"
+                      : activeTab === 1
+                        ? "Dashboard do HoraPoint mostrando apontamento de horas e projetos"
+                        : "Dashboard da Régua de Cobrança mostrando disparos e valor de cobrança do dia"
+                  }
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full h-full object-cover object-left-top"
+                />
               </AnimatePresence>
-
-              
-              {activeTab === 1 && (
-                <>
-                  {/* Floating UI Elements */}
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-1/4 right-1/4 w-24 h-24 rounded-lg bg-hv-blue/20 backdrop-blur-sm border border-hv-blue/30 z-20 flex items-center justify-center"
-                  >
-                    <div className="w-12 h-2 bg-hv-blue-electric/40 rounded" />
-                  </motion.div>
-                  <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute bottom-1/4 left-1/4 w-32 h-16 rounded-lg bg-hv-bg-highlight/40 backdrop-blur-sm border border-white/10 z-20 flex flex-col gap-2 p-3"
-                  >
-                    <div className="w-full h-1 bg-white/10 rounded" />
-                    <div className="w-2/3 h-1 bg-white/10 rounded" />
-                  </motion.div>
-                </>
-              )}
             </div>
+
           </div>
         </div>
       </div>
