@@ -8,9 +8,9 @@ const cases = [
   {
     id: "amigotech",
     client: "Amigotech",
-    challenge: "Necessidade de escalabilidade e automação em processos críticos de logística e comunicação.",
-    solution: "Implementação da plataforma HUBOT com fluxos inteligentes de IA e integração direta com sistemas legados.",
-    result: "+45% de eficiência operacional nos primeiros 6 meses.",
+    challenge: "Dificuldade em controlar cobranças e identificar quais boletos deveriam ser cobrados em cada data.",
+    solution: "Régua de Cobranças: disparos automáticos para centenas de clientes, no dia e horário programados.",
+    result: "35% de aumento nas baixas de títulos, com mais eficiência e menos processos manuais.",
     image: galpaoFabricaImage.url,
   },
   {
