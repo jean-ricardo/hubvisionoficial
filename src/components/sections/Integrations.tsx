@@ -1,46 +1,10 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Database, ShieldCheck, Share2, Smartphone, BarChart3, Users } from "lucide-react";
+import { useRef } from "react";
 import seloTotvs from "@/assets/selo-canal-homologado-totvs.png.asset.json";
-
-const nodes = [
-  { id: "hubvision", label: "Hubvision", icon: <ShieldCheck className="w-6 h-6 md:w-8 md:h-8" /> },
-  { id: "totvs", label: "TOTVS", icon: <Database className="w-6 h-6 md:w-8 md:h-8" /> },
-  { id: "crm", label: "CRM", icon: <Users className="w-6 h-6 md:w-8 md:h-8" /> },
-  { id: "whatsapp", label: "WhatsApp", icon: <Smartphone className="w-6 h-6 md:w-8 md:h-8" /> },
-  { id: "dados", label: "Dados", icon: <BarChart3 className="w-6 h-6 md:w-8 md:h-8" /> },
-  { id: "operacao", label: "Operação", icon: <Share2 className="w-6 h-6 md:w-8 md:h-8" /> },
-];
 
 export const Integrations = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [nodePositions, setNodePositions] = useState<{ x: number, y: number }[]>([]);
-
-  useEffect(() => {
-    const updatePositions = () => {
-      if (containerRef.current) {
-        const containerRect = containerRef.current.getBoundingClientRect();
-        setDimensions({ width: containerRect.width, height: containerRect.height });
-
-        const cards = containerRef.current.querySelectorAll('.node-card');
-        const positions = Array.from(cards).map(card => {
-          const rect = card.getBoundingClientRect();
-          return {
-            x: rect.left - containerRect.left + rect.width / 2,
-            y: rect.top - containerRect.top + rect.height / 2
-          };
-        });
-        setNodePositions(positions);
-      }
-    };
-
-    updatePositions();
-    window.addEventListener('resize', updatePositions);
-    return () => window.removeEventListener('resize', updatePositions);
-  }, [isInView]);
 
   return (
     <section ref={sectionRef} className="bg-hv-bg-secondary py-24 px-6 overflow-hidden border-y border-white/5">
