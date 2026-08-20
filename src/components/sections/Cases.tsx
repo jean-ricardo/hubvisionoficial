@@ -24,6 +24,7 @@ const cases = [
     result: "+70% de automação na segunda via, com +3 mil boletos enviados por mês.",
     image: cientistaLaboratorioImage.url,
     hideButton: true,
+    hideTag: true,
   },
 ];
 
