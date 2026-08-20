@@ -56,9 +56,9 @@ export const Integrations = () => {
           </motion.div>
         </div>
 
-        <div className="relative py-12 flex justify-center">
-          <div className="text-hv-text-muted text-sm italic">
-            Visualização de ecossistema em atualização
+        <div className="relative py-8 flex justify-center">
+          <div className="text-hv-blue-electric/40 text-sm tracking-widest uppercase font-medium">
+            Integração Completa
           </div>
         </div>
       </div>
