@@ -72,7 +72,7 @@ export const Cases = () => {
             <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end">
               <div className="max-w-3xl">
                 <span className="inline-block px-4 py-1 rounded-full bg-hv-blue-electric/20 border border-hv-blue-electric/30 text-hv-blue-electric text-sm font-semibold mb-6">
-                  Case: {item.client} // TODO: Content - Verify case study details
+                  Case: {item.client}
                 </span>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
