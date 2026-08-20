@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronRight, Layout, Clock, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -53,6 +53,48 @@ const solutions = [
     ],
   },
 ];
+
+const ParticleBackground = () => {
+  const particles = useMemo(() => {
+    return Array.from({ length: 20 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 1,
+      duration: Math.random() * 3 + 2,
+      delay: Math.random() * 2,
+    }));
+  }, []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full bg-hv-blue-electric/40"
+          style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
+            height: p.size,
+          }}
+          animate={{
+            y: [0, -40, 0],
+            x: [0, Math.random() * 20 - 10, 0],
+            opacity: [0, 0.8, 0],
+            scale: [0, 1.2, 0],
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            delay: p.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 export const FeaturedSolutions = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -153,6 +195,9 @@ export const FeaturedSolutions = () => {
             </div>
             
             <div className="mt-8 w-full h-[calc(100%-2rem)] bg-hv-bg-surface/50 rounded-lg overflow-hidden relative flex items-center justify-center border border-white/5">
+              {/* Particles Animation */}
+              <ParticleBackground />
+              
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeTab}
@@ -174,7 +219,7 @@ export const FeaturedSolutions = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.05 }}
                   transition={{ duration: 0.5 }}
-                  className="w-full h-full object-cover object-left-top"
+                  className="w-full h-full object-cover object-left-top relative z-10"
                 />
               </AnimatePresence>
             </div>
