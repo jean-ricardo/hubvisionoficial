@@ -77,7 +77,7 @@ export const Cases = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                   <div className="space-y-4">
                     <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold">O Desafio</h4>
-                    <p className="text-hv-white text-lg">{item.challenge}</p>
+                    <p className="text-hv-white text-lg font-medium leading-relaxed">{item.challenge}</p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold">A Solução</h4>
