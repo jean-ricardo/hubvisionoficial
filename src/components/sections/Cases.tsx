@@ -8,9 +8,9 @@ const cases = [
   {
     id: "amigotech",
     client: "Amigotech",
-    challenge: "Necessidade de escalabilidade e automação em processos críticos de logística e comunicação.",
-    solution: "Implementação da plataforma HUBOT com fluxos inteligentes de IA e integração direta com sistemas legados.",
-    result: "+45% de eficiência operacional nos primeiros 6 meses.",
+    challenge: "Dificuldade em controlar cobranças e identificar quais boletos deveriam ser cobrados em cada data.",
+    solution: "Régua de Cobranças: disparos automáticos para centenas de clientes, no dia e horário programados.",
+    result: "35% de aumento nas baixas de títulos, com mais eficiência e menos processos manuais.",
     image: galpaoFabricaImage.url,
   },
   {
@@ -65,7 +65,7 @@ export const Cases = () => {
               style={{ backgroundImage: `url(${item.image})` }}
             />
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/80 to-transparent opacity-90 group-hover:opacity-85 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/95 to-hv-bg-primary/40 opacity-100 transition-opacity" />
             
             {/* Content */}
             <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end">
@@ -77,11 +77,11 @@ export const Cases = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                   <div className="space-y-4">
                     <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold">O Desafio</h4>
-                    <p className="text-hv-white text-lg">{item.challenge}</p>
+                    <p className="text-hv-white text-lg font-medium leading-relaxed">{item.challenge}</p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold">A Solução</h4>
-                    <p className="text-hv-white text-lg">{item.solution}</p>
+                    <p className="text-hv-white text-lg font-medium leading-relaxed">{item.solution}</p>
                   </div>
                 </div>
 
