@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import galpaoFabricaImage from "@/assets/galpao-de-fabrica.jpg.asset.json";
 
 const cases = [
   {
