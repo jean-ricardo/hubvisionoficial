@@ -19,9 +19,9 @@ const cases = [
   {
     id: "asalocadora",
     client: "ASA Locadora",
-    challenge: "Dificuldade no controle de jornada e conformidade fiscal para uma frota distribuída nacionalmente.",
-    solution: "Adoção do HORAPOINT com geolocalização e reconhecimento facial, centralizando a gestão em tempo real.",
-    result: "Redução de 90% em inconsistências de folha de pagamento.",
+    challenge: "Busca constante por segunda via de boletos, exigindo que a equipe realizasse o processo manualmente.",
+    solution: "Chatbot automatizado para solicitar e enviar a segunda via do boleto de forma rápida e autônoma.",
+    result: "+70% de automação na segunda via, com +3 mil boletos enviados por mês.",
     image: cientistaLaboratorioImage.url,
   },
 ];
