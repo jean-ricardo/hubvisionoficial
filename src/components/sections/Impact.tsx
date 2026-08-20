@@ -2,10 +2,9 @@ import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { label: "Clientes atendidos", value: 150, suffix: "+" }, // TODO: Content - Verify real numbers
-  { label: "Interações inteligentes", value: 500000, suffix: "+" }, // TODO: Content - Verify real numbers
+  { label: "Clientes atendidos", value: 500000, suffix: "+" },
   { label: "Projetos entregues", value: 200, suffix: "+" },
-  { label: "Economia gerada", value: 30, suffix: "%" },
+  { label: "Economia gerada", value: 45, suffix: "%" },
 ];
 
 const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
