@@ -22,7 +22,7 @@ const cases = [
     challenge: "Dificuldade no controle de jornada e conformidade fiscal para uma frota distribuída nacionalmente.",
     solution: "Adoção do HORAPOINT com geolocalização e reconhecimento facial, centralizando a gestão em tempo real.",
     result: "Redução de 90% em inconsistências de folha de pagamento.",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200",
+    image: cientistaLaboratorioImage.url,
   },
 ];
 
