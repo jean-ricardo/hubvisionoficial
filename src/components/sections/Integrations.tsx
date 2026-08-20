@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Database, ShieldCheck, Share2, Smartphone, BarChart3, Users } from "lucide-react";
+import seloTotvs from "@/assets/selo-canal-homologado-totvs.png.asset.json";
 
 const nodes = [
   { id: "hubvision", label: "Hubvision", icon: <ShieldCheck className="w-6 h-6" /> },
