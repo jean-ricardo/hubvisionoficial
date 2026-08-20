@@ -84,18 +84,18 @@ export const Cases = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                   <div className="space-y-4">
-                    <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold">O Desafio</h4>
+                    <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold border-b border-hv-blue-electric/30 pb-1 mb-2">O Desafio</h4>
                     <p className="text-hv-white text-lg font-medium leading-relaxed">{item.challenge}</p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold">A Solução</h4>
+                    <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold border-b border-hv-blue-electric/30 pb-1 mb-2">A Solução</h4>
                     <p className="text-hv-white text-lg font-medium leading-relaxed">{item.solution}</p>
                   </div>
                 </div>
 
                 <div className="mt-8 md:mt-12 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 pt-8 border-t border-white/10">
                   <div>
-                    <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold mb-2">Resultado</h4>
+                    <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold mb-2">Resultado</h4>
                     <p className="text-2xl md:text-3xl font-bold text-hv-blue-electric">{item.result}</p>
                   </div>
                   {!item.hideButton && (
