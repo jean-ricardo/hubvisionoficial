@@ -13,6 +13,7 @@ const cases = [
     result: "35% de aumento nas baixas de títulos, com mais eficiência e menos processos manuais.",
     image: galpaoFabricaImage.url,
     hideButton: true,
+    hideTag: true,
   },
   {
     id: "asalocadora",
@@ -71,9 +72,11 @@ export const Cases = () => {
             {/* Content */}
             <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end">
               <div className="max-w-3xl">
-                <span className="inline-block px-4 py-1 rounded-full bg-hv-blue-electric/20 border border-hv-blue-electric/30 text-hv-blue-electric text-sm font-semibold mb-6">
-                  Case: {item.client}
-                </span>
+                {!item.hideTag && (
+                  <span className="inline-block px-4 py-1 rounded-full bg-hv-blue-electric/20 border border-hv-blue-electric/30 text-hv-blue-electric text-sm font-semibold mb-6">
+                    Case: {item.client}
+                  </span>
+                )}
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                   <div className="space-y-4">
