@@ -5,6 +5,7 @@ const stats = [
   { label: "Clientes atendidos", value: 500000, suffix: "+" },
   { label: "Projetos entregues", value: 200, suffix: "+" },
   { label: "Economia gerada", value: 45, suffix: "%" },
+  { label: "Empresas parceiras", value: 30, suffix: "+" },
 ];
 
 const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
