@@ -70,10 +70,11 @@ export const Cases = () => {
               style={{ backgroundImage: `url(${item.image})` }}
             />
             {/* Overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/${item.id === 'asalocadora' ? '85' : ['amigotech'].includes(item.id) ? '80' : '95'} to-hv-bg-primary/${item.id === 'asalocadora' ? '30' : ['amigotech'].includes(item.id) ? '20' : '40'} opacity-100 transition-opacity`} />
+            <div className="absolute inset-0 bg-hv-bg-primary transition-opacity duration-500 opacity-50 group-hover:opacity-70 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/40 to-transparent opacity-100 z-20" />
             
             {/* Content */}
-            <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end">
+            <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end z-30">
               <div className="max-w-3xl">
                 {!item.hideTag && (
                   <span className="inline-block px-4 py-1 rounded-full bg-hv-blue-electric/20 border border-hv-blue-electric/30 text-hv-blue-electric text-sm font-semibold mb-6">
