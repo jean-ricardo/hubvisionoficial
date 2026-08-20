@@ -67,7 +67,7 @@ export const Cases = () => {
               style={{ backgroundImage: `url(${item.image})` }}
             />
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/95 to-hv-bg-primary/40 opacity-100 transition-opacity" />
+            <div className={`absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/${item.id === 'amigotech' ? '80' : '95'} to-hv-bg-primary/${item.id === 'amigotech' ? '20' : '40'} opacity-100 transition-opacity`} />
             
             {/* Content */}
             <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end">
