@@ -23,6 +23,7 @@ const cases = [
     solution: "Chatbot automatizado para solicitar e enviar a segunda via do boleto de forma rápida e autônoma.",
     result: "+70% de automação na segunda via, com +3 mil boletos enviados por mês.",
     image: cientistaLaboratorioImage.url,
+    hideButton: true,
   },
 ];
 
