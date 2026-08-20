@@ -109,12 +109,15 @@ export const Integrations = () => {
             {nodePositions.length > 1 && nodePositions.map((pos, i) => {
               if (i === nodePositions.length - 1) return null;
               const nextPos = nodePositions[i + 1];
+              if (!nextPos) return null;
+              
+              const path = `M ${pos.x} ${pos.y} L ${nextPos.x} ${nextPos.y}`;
               
               return (
                 <g key={`connection-${i}`}>
                   {/* Static connection path */}
                   <motion.path
-                    d={`M ${pos.x} ${pos.y} L ${nextPos.x} ${nextPos.y}`}
+                    d={path}
                     stroke="currentColor"
                     strokeWidth="1"
                     className="text-hv-blue-electric/20"
@@ -137,7 +140,7 @@ export const Integrations = () => {
                       delay: i * 0.6
                     }}
                     style={{
-                      offsetPath: `path('M ${pos.x} ${pos.y} L ${nextPos.x} ${nextPos.y}')`,
+                      offsetPath: `path('${path}')`,
                       boxShadow: "0 0 10px var(--hv-blue-electric)"
                     }}
                   />
