@@ -84,58 +84,60 @@ export const Cases = () => {
 
       <div className="max-w-7xl mx-auto relative h-[600px] md:h-[500px]">
         <AnimatePresence mode="wait">
-          <motion.div
-            key={cases[currentIndex].id}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="absolute inset-0 w-full h-full relative rounded-2xl overflow-hidden group shadow-2xl"
-          >
-            {/* Background Image */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
-              style={{ backgroundImage: `url(${cases[currentIndex].image})` }}
-            />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-hv-bg-primary transition-opacity duration-500 opacity-50 group-hover:opacity-70 z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/40 to-transparent opacity-100 z-20" />
-            
-            {/* Content */}
-            <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end z-30">
-              <div className="max-w-4xl">
-                {!cases[currentIndex].hideTag && (
-                  <span className="inline-block px-4 py-1 rounded-full bg-hv-blue-electric/20 border border-hv-blue-electric/30 text-hv-blue-electric text-sm font-semibold mb-6">
-                    Case: {cases[currentIndex].client}
-                  </span>
-                )}
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-                  <div className="space-y-4">
-                    <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold border-b border-hv-blue-electric/30 pb-2 mb-2 w-fit">O Desafio</h4>
-                    <p className="text-hv-white text-xl font-medium leading-relaxed drop-shadow-lg">{cases[currentIndex].challenge}</p>
-                  </div>
-                  <div className="space-y-4">
-                    <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold border-b border-hv-blue-electric/30 pb-2 mb-2 w-fit">A Solução</h4>
-                    <p className="text-hv-white text-xl font-medium leading-relaxed drop-shadow-lg">{cases[currentIndex].solution}</p>
-                  </div>
-                </div>
-
-                <div className="mt-8 md:mt-12 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 pt-8 border-t border-white/10">
-                  <div>
-                    <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold mb-2">Resultado</h4>
-                    <p className="text-3xl md:text-4xl font-bold text-hv-blue-electric drop-shadow-lg">{cases[currentIndex].result}</p>
-                  </div>
-                  {!cases[currentIndex].hideButton && (
-                    <Button variant="secondary" className="group/btn h-12 px-8 text-base">
-                      Ver case completo
-                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover/btn:translate-x-1" />
-                    </Button>
+          {cases[currentIndex] && (
+            <motion.div
+              key={cases[currentIndex].id}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="absolute inset-0 w-full h-full relative rounded-2xl overflow-hidden group shadow-2xl"
+            >
+              {/* Background Image */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                style={{ backgroundImage: `url(${cases[currentIndex].image})` }}
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-hv-bg-primary transition-opacity duration-500 opacity-50 group-hover:opacity-70 z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-hv-bg-primary via-hv-bg-primary/40 to-transparent opacity-100 z-20" />
+              
+              {/* Content */}
+              <div className="absolute inset-0 p-6 md:p-16 flex flex-col justify-end z-30">
+                <div className="max-w-4xl">
+                  {!cases[currentIndex].hideTag && (
+                    <span className="inline-block px-4 py-1 rounded-full bg-hv-blue-electric/20 border border-hv-blue-electric/30 text-hv-blue-electric text-sm font-semibold mb-6">
+                      Case: {cases[currentIndex].client}
+                    </span>
                   )}
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                    <div className="space-y-4">
+                      <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold border-b border-hv-blue-electric/30 pb-2 mb-2 w-fit">O Desafio</h4>
+                      <p className="text-hv-white text-xl font-medium leading-relaxed drop-shadow-lg">{cases[currentIndex].challenge}</p>
+                    </div>
+                    <div className="space-y-4">
+                      <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold border-b border-hv-blue-electric/30 pb-2 mb-2 w-fit">A Solução</h4>
+                      <p className="text-hv-white text-xl font-medium leading-relaxed drop-shadow-lg">{cases[currentIndex].solution}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 md:mt-12 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 pt-8 border-t border-white/10">
+                    <div>
+                      <h4 className="text-hv-white text-sm uppercase tracking-widest font-bold mb-2">Resultado</h4>
+                      <p className="text-3xl md:text-4xl font-bold text-hv-blue-electric drop-shadow-lg">{cases[currentIndex].result}</p>
+                    </div>
+                    {!cases[currentIndex].hideButton && (
+                      <Button variant="secondary" className="group/btn h-12 px-8 text-base">
+                        Ver case completo
+                        <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
       
