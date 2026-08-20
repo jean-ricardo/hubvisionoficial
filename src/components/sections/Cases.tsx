@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import galpaoFabricaImage from "@/assets/galpao-de-fabrica.jpg.asset.json";
+import cientistaLaboratorioImage from "@/assets/cientista-laboratorio.jpg.asset.json";
 
 const cases = [
   {
