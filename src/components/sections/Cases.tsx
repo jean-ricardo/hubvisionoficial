@@ -81,7 +81,7 @@ export const Cases = () => {
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold">A Solução</h4>
-                    <p className="text-hv-white text-lg">{item.solution}</p>
+                    <p className="text-hv-white text-lg font-medium leading-relaxed">{item.solution}</p>
                   </div>
                 </div>
 
