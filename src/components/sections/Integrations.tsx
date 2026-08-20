@@ -36,7 +36,36 @@ export const Integrations = () => {
           >
             Somos canal homologado TOTVS, conectando tecnologia e gestão para otimizar processos, automatizar operações e ampliar o controle sobre o negócio.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="mt-12 flex justify-center"
+          >
+            <div className="group relative inline-flex items-center gap-5 rounded-2xl border border-hv-blue-electric/30 bg-hv-bg-surface/70 px-6 py-5 backdrop-blur-sm shadow-[0_0_40px_var(--hv-glow)] transition-colors hover:border-hv-blue-electric/60">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-hv-blue-electric/10 via-transparent to-hv-blue-electric/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <img
+                src={seloTotvs.url}
+                alt="Hubvision é Canal Homologado TOTVS"
+                loading="lazy"
+                className="relative z-10 h-16 md:h-20 w-auto rounded-lg"
+              />
+              <div className="relative z-10 hidden sm:block text-left border-l border-white/10 pl-5">
+                <p className="text-hv-blue-electric text-xs font-semibold tracking-[0.18em] uppercase">
+                  Parceria oficial
+                </p>
+                <p className="text-hv-white font-semibold mt-1">
+                  Canal Homologado TOTVS
+                </p>
+                <p className="text-hv-text-muted text-sm mt-0.5">
+                  Implantação e integração certificadas
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
+
 
         <div className="relative py-12">
           {/* Connection Lines Background */}
