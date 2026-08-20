@@ -2,10 +2,9 @@ import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { label: "Clientes atendidos", value: 150, suffix: "+" }, // TODO: Content - Verify real numbers
-  { label: "Interações inteligentes", value: 500000, suffix: "+" }, // TODO: Content - Verify real numbers
+  { label: "Clientes atendidos", value: 500000, suffix: "+" },
   { label: "Projetos entregues", value: 200, suffix: "+" },
-  { label: "Economia gerada", value: 30, suffix: "%" },
+  { label: "Economia gerada", value: 45, suffix: "%" },
 ];
 
 const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
@@ -69,7 +68,7 @@ export const Impact = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
