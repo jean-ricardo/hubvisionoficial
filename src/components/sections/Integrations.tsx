@@ -72,7 +72,6 @@ export const Integrations = () => {
           </motion.div>
         </div>
       </div>
-      </div>
     </section>
   );
 };
