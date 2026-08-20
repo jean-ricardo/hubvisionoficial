@@ -12,6 +12,7 @@ const cases = [
     solution: "Régua de Cobranças: disparos automáticos para centenas de clientes, no dia e horário programados.",
     result: "35% de aumento nas baixas de títulos, com mais eficiência e menos processos manuais.",
     image: galpaoFabricaImage.url,
+    hideButton: true,
   },
   {
     id: "asalocadora",
@@ -90,10 +91,12 @@ export const Cases = () => {
                     <h4 className="text-hv-text-muted text-xs uppercase tracking-widest font-bold mb-2">Resultado</h4>
                     <p className="text-2xl md:text-3xl font-bold text-hv-blue-electric">{item.result}</p>
                   </div>
-                  <Button variant="secondary" className="group/btn">
-                    Ver case completo
-                    <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-                  </Button>
+                  {!item.hideButton && (
+                    <Button variant="secondary" className="group/btn">
+                      Ver case completo
+                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
