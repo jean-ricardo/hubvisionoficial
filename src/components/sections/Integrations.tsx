@@ -1,20 +1,46 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Database, ShieldCheck, Share2, Smartphone, BarChart3, Users } from "lucide-react";
 import seloTotvs from "@/assets/selo-canal-homologado-totvs.png.asset.json";
 
 const nodes = [
-  { id: "hubvision", label: "Hubvision", icon: <ShieldCheck className="w-6 h-6" /> },
-  { id: "totvs", label: "TOTVS", icon: <Database className="w-6 h-6" /> },
-  { id: "crm", label: "CRM", icon: <Users className="w-6 h-6" /> },
-  { id: "whatsapp", label: "WhatsApp", icon: <Smartphone className="w-6 h-6" /> },
-  { id: "dados", label: "Dados", icon: <BarChart3 className="w-6 h-6" /> },
-  { id: "operacao", label: "Operação", icon: <Share2 className="w-6 h-6" /> },
+  { id: "hubvision", label: "Hubvision", icon: <ShieldCheck className="w-6 h-6 md:w-8 md:h-8" /> },
+  { id: "totvs", label: "TOTVS", icon: <Database className="w-6 h-6 md:w-8 md:h-8" /> },
+  { id: "crm", label: "CRM", icon: <Users className="w-6 h-6 md:w-8 md:h-8" /> },
+  { id: "whatsapp", label: "WhatsApp", icon: <Smartphone className="w-6 h-6 md:w-8 md:h-8" /> },
+  { id: "dados", label: "Dados", icon: <BarChart3 className="w-6 h-6 md:w-8 md:h-8" /> },
+  { id: "operacao", label: "Operação", icon: <Share2 className="w-6 h-6 md:w-8 md:h-8" /> },
 ];
 
 export const Integrations = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [nodePositions, setNodePositions] = useState<{ x: number, y: number }[]>([]);
+
+  useEffect(() => {
+    const updatePositions = () => {
+      if (containerRef.current) {
+        const containerRect = containerRef.current.getBoundingClientRect();
+        setDimensions({ width: containerRect.width, height: containerRect.height });
+
+        const cards = containerRef.current.querySelectorAll('.node-card');
+        const positions = Array.from(cards).map(card => {
+          const rect = card.getBoundingClientRect();
+          return {
+            x: rect.left - containerRect.left + rect.width / 2,
+            y: rect.top - containerRect.top + rect.height / 2
+          };
+        });
+        setNodePositions(positions);
+      }
+    };
+
+    updatePositions();
+    window.addEventListener('resize', updatePositions);
+    return () => window.removeEventListener('resize', updatePositions);
+  }, [isInView]);
 
   return (
     <section ref={sectionRef} className="bg-hv-bg-secondary py-24 px-6 overflow-hidden border-y border-white/5">
@@ -26,7 +52,7 @@ export const Integrations = () => {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold mb-6 text-hv-white"
           >
-            Tecnologia que conversa com o seu negócio.
+            Tecnologia que conversa com o seu negócio
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -66,45 +92,90 @@ export const Integrations = () => {
           </motion.div>
         </div>
 
-
-        <div className="relative py-12">
-          {/* Connection Lines Background */}
-          <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-hv-blue/20 to-transparent -translate-y-1/2 z-0 hidden md:block" />
+        <div ref={containerRef} className="relative py-12 min-h-[400px] md:min-h-[200px]">
+          {/* SVG Connection System */}
+          <svg 
+            className="absolute inset-0 w-full h-full pointer-events-none z-0"
+            viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
+          >
+            <defs>
+              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="var(--hv-blue-electric)" stopOpacity="0" />
+                <stop offset="50%" stopColor="var(--hv-blue-electric)" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="var(--hv-blue-electric)" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            
+            {nodePositions.length > 1 && nodePositions.map((pos, i) => {
+              if (i === nodePositions.length - 1) return null;
+              const nextPos = nodePositions[i + 1];
+              
+              return (
+                <g key={`connection-${i}`}>
+                  {/* Static connection path */}
+                  <motion.path
+                    d={`M ${pos.x} ${pos.y} L ${nextPos.x} ${nextPos.y}`}
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    className="text-hv-blue-electric/20"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+                    transition={{ duration: 1.5, delay: 0.5 + i * 0.1 }}
+                  />
+                  
+                  {/* Animated "data flow" pulse */}
+                  <motion.circle
+                    r="2.5"
+                    fill="var(--hv-blue-electric)"
+                    filter="blur(1px)"
+                    initial={{ offsetDistance: "0%" }}
+                    animate={{ offsetDistance: "100%" }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear",
+                      delay: i * 0.6
+                    }}
+                    style={{
+                      offsetPath: `path('M ${pos.x} ${pos.y} L ${nextPos.x} ${nextPos.y}')`,
+                      boxShadow: "0 0 10px var(--hv-blue-electric)"
+                    }}
+                  />
+                </g>
+              );
+            })}
+          </svg>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 relative z-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 relative z-10">
             {nodes.map((node, index) => (
               <motion.div
                 key={node.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                  delay: index * 0.1 
+                }}
                 className="flex flex-col items-center group"
               >
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-hv-bg-surface border border-white/10 flex items-center justify-center text-hv-blue-electric mb-4 group-hover:border-hv-blue-electric/50 transition-colors shadow-xl relative overflow-hidden">
-                  {node.icon}
+                <div className="node-card w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-hv-bg-surface/80 border border-white/10 flex items-center justify-center text-hv-blue-electric mb-4 group-hover:border-hv-blue-electric/50 transition-all duration-500 shadow-2xl relative overflow-hidden backdrop-blur-md hover:scale-110 group-hover:shadow-[0_0_30px_rgba(0,210,255,0.2)]">
+                  {/* Background Glow */}
+                  <div className="absolute inset-0 bg-hv-blue-electric/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   
-                  {/* Data packet animation */}
-                  {index < nodes.length - 1 && (
-                    <motion.div
-                      animate={{ x: [0, 100] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: index * 0.5 }}
-                      className="absolute top-1/2 right-0 w-1 h-1 bg-hv-blue-electric rounded-full shadow-[0_0_8px_var(--hv-blue-electric)] hidden md:block"
-                    />
-                  )}
+                  {/* Icon */}
+                  <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-500">
+                    {node.icon}
+                  </div>
+                  
+                  {/* Inner ring */}
+                  <div className="absolute inset-2 border border-white/5 rounded-[1.25rem] pointer-events-none" />
                 </div>
-                <span className="text-hv-white font-semibold text-sm md:text-base">
+                
+                <span className="text-hv-white font-medium text-sm md:text-base tracking-wide group-hover:text-hv-blue-electric transition-colors duration-300">
                   {node.label}
                 </span>
-                {index < nodes.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 left-[calc(100%/12+(index*100%/6))] w-[calc(100%/6)] h-[2px] pointer-events-none">
-                     <motion.div 
-                        initial={{ scaleX: 0 }}
-                        animate={isInView ? { scaleX: 1 } : {}}
-                        transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                        className="w-full h-full bg-hv-blue-electric/30 origin-left"
-                     />
-                  </div>
-                )}
               </motion.div>
             ))}
           </div>
