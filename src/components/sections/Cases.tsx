@@ -11,7 +11,7 @@ const cases = [
     challenge: "Necessidade de escalabilidade e automação em processos críticos de logística e comunicação.",
     solution: "Implementação da plataforma HUBOT com fluxos inteligentes de IA e integração direta com sistemas legados.",
     result: "+45% de eficiência operacional nos primeiros 6 meses.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
+    image: galpaoFabricaImage.url,
   },
   {
     id: "asalocadora",
