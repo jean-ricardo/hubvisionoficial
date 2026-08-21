@@ -53,13 +53,6 @@ export const CTA = () => {
               </Button>
             </motion.div>
             
-            <Button 
-              variant="secondary" 
-              size="lg" 
-              className="border-white/20 text-white hover:bg-white/10 h-16 px-10 text-xl"
-            >
-              Nossas soluções
-            </Button>
           </div>
         </motion.div>
       </div>
