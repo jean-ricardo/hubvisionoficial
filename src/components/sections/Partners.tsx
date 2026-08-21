@@ -46,9 +46,7 @@ export const Partners = () => {
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className={`flex items-center justify-center min-w-[180px] h-20 px-6 rounded-xl transition-all duration-500 opacity-70 hover:opacity-100 ${
-                partner.light ? "" : "bg-white/95"
-              }`}
+              className="flex items-center justify-center min-w-[180px] h-20 px-6 rounded-xl transition-all duration-500 opacity-70 hover:opacity-100"
             >
               <img
                 src={partner.logo}
