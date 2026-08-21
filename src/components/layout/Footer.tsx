@@ -46,16 +46,23 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Links: Soluções */}
+          {/* Links: Termos */}
           <div className="space-y-6">
-            <h4 className="text-white font-bold text-lg">Soluções</h4>
+            <h4 className="text-white font-bold text-lg">Políticas</h4>
             <ul className="space-y-4">
-              {[].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-hv-text-muted hover:text-hv-white transition-colors relative group">
-                    {link}
+              {[
+                { label: "Termos de Uso", href: "/terms" },
+                { label: "Privacidade", href: "#" },
+                { label: "Segurança", href: "#" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link 
+                    to={link.href} 
+                    className="text-hv-text-muted hover:text-hv-white transition-colors relative group"
+                  >
+                    {link.label}
                     <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-hv-blue-electric transition-all group-hover:w-full" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
