@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -36,7 +37,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <Button variant="primary" size="lg" className="w-full sm:w-auto" onClick={() => window.location.hash = 'contact'}>
+          <Button variant="primary" size="lg" className="w-full sm:w-auto" onClick={() => openWhatsApp()}>
             Fale conosco
           </Button>
           <Button variant="secondary" size="lg" className="w-full sm:w-auto" onClick={() => window.location.hash = 'solutions'}>

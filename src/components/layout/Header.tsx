@@ -5,6 +5,7 @@ import { clsx } from "clsx";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoAsset from "@/assets/hubvision-logo-white.png.asset.json";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 
 const NAV_LINKS = [
@@ -58,7 +59,12 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4 shrink-0">
-          <Button variant="primary" size="sm" className="hidden lg:inline-flex">
+          <Button 
+            variant="primary" 
+            size="sm" 
+            className="hidden lg:inline-flex"
+            onClick={() => openWhatsApp()}
+          >
             Fale conosco
           </Button>
           
@@ -111,7 +117,12 @@ export function Header() {
               transition={{ delay: 0.4 }}
               className="mt-auto mb-12"
             >
-              <Button className="w-full h-16 text-lg">Fale conosco</Button>
+              <Button 
+                className="w-full h-16 text-lg"
+                onClick={() => openWhatsApp()}
+              >
+                Fale conosco
+              </Button>
             </motion.div>
           </motion.div>
         )}
