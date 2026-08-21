@@ -1,14 +1,28 @@
 import { motion } from "framer-motion";
+import amigo from "@/assets/cliente-amigo.png.asset.json";
+import autoNorte from "@/assets/cliente-auto-norte.png.asset.json";
+import asa from "@/assets/cliente-asa.png.asset.json";
+import bokus from "@/assets/cliente-bokus.png.asset.json";
+import damaq from "@/assets/cliente-damaq.png.asset.json";
+import pmPolimeros from "@/assets/cliente-pm-polimeros.png.asset.json";
+import divisao from "@/assets/cliente-divisao.png.asset.json";
+import edilimp from "@/assets/cliente-edilimp.png.asset.json";
+import solplast from "@/assets/cliente-solplast.png.asset.json";
+import mauricea from "@/assets/cliente-mauricea.webp.asset.json";
 
-const partners = [
-  { name: "TOTVS", logo: "/lovable-uploads/48e91689-d101-447b-a634-110037f59d43.png" },
-  { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" },
-  { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" },
-  { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" },
-  { name: "Oracle", logo: "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" },
-  { name: "Salesforce", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg" },
-  { name: "SAP", logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" },
-  { name: "IBM", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" },
+type Partner = { name: string; logo: string; light?: boolean };
+
+const partners: Partner[] = [
+  { name: "Amigo", logo: amigo.url },
+  { name: "Auto Norte", logo: autoNorte.url },
+  { name: "ASA Rent a Car", logo: asa.url },
+  { name: "Boku's", logo: bokus.url },
+  { name: "Damaq Equipamentos", logo: damaq.url },
+  { name: "P&M Polímeros", logo: pmPolimeros.url, light: true },
+  { name: "Divisão Industrial e Marítimo", logo: divisao.url },
+  { name: "Edilimp", logo: edilimp.url },
+  { name: "SolPlast", logo: solplast.url },
+  { name: "Mauricéa", logo: mauricea.url },
 ];
 
 export const Partners = () => {
@@ -19,12 +33,12 @@ export const Partners = () => {
     <section className="py-20 bg-hv-bg-primary overflow-hidden border-y border-white/5">
       <div className="relative flex">
         <motion.div
-          className="flex whitespace-nowrap gap-12 items-center"
+          className="flex whitespace-nowrap gap-10 items-center"
           animate={{
             x: ["0%", "-33.33%"],
           }}
           transition={{
-            duration: 30,
+            duration: 40,
             ease: "linear",
             repeat: Infinity,
           }}
@@ -32,22 +46,20 @@ export const Partners = () => {
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className="flex items-center justify-center min-w-[160px] h-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+              className={`flex items-center justify-center min-w-[180px] h-20 px-6 rounded-xl transition-all duration-500 opacity-70 hover:opacity-100 ${
+                partner.light ? "" : "bg-white/95"
+              }`}
             >
-              {partner.logo.startsWith("http") || partner.logo.startsWith("/") ? (
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="max-h-8 w-auto object-contain"
-                />
-              ) : (
-                <span className="text-hv-white font-bold">{partner.name}</span>
-              )}
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                loading="lazy"
+                className="max-h-12 max-w-[140px] w-auto object-contain"
+              />
             </div>
           ))}
         </motion.div>
       </div>
-      
     </section>
   );
 };
