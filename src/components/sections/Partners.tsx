@@ -76,7 +76,7 @@ export const Partners = () => {
               whileHover={{ y: -5, scale: 1.02 }}
               className="group flex items-center justify-center min-w-[200px] h-28 px-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-hv-blue-light/30"
             >
-              <div className="relative w-full h-full flex items-center justify-center p-4 bg-white rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.1)] transition-all">
+              <div className="relative w-full h-full flex items-center justify-center p-4 bg-[#72CEFF] rounded-xl shadow-[0_0_20px_rgba(114,206,255,0.1)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] transition-all">
                 <img
                   src={partner.logo}
                   alt={partner.name}
