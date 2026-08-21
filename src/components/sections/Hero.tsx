@@ -8,21 +8,6 @@ export function Hero() {
       {/* Background Gradients & Glows */}
       <div className="pointer-events-none absolute inset-0 z-0">
 
-        <motion.div
-          animate={shouldReduceMotion ? { opacity: 0.4 } : {
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
-          style={{
-            background: "radial-gradient(circle, rgba(51,104,232,0.45) 0%, rgba(51,104,232,0.15) 35%, transparent 70%)",
-          }}
-        />
       </div>
 
       <div className="container relative z-10 mx-auto px-6 text-center">
