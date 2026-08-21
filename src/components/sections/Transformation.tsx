@@ -14,9 +14,8 @@ export function Transformation() {
   return (
     <div ref={containerRef} className="relative h-[300vh] md:h-[400vh]">
       <section className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden bg-hv-bg-secondary">
-        {/* Glow effect */}
+        {/* Decorative dots */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-hv-glow blur-[120px] opacity-40" />
           {/* Particle dots */}
           <div className="absolute inset-0 opacity-20" 
             style={{ 
