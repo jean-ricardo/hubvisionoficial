@@ -178,9 +178,6 @@ export const FeaturedSolutions = () => {
                     ))}
                   </div>
 
-                  <Button variant="primary" size="lg" className="mt-8">
-                    Saiba mais
-                  </Button>
                 </motion.div>
               )}
             </AnimatePresence>
