@@ -105,7 +105,7 @@ export const Partners = () => {
               {/* Glowing outer ring */}
               <div className="absolute inset-2 rounded-2xl bg-hv-blue-light/0 group-hover:bg-hv-blue-light/5 blur-xl transition-all duration-500" />
               
-              <div className="relative z-10 w-full h-full flex items-center justify-center p-4 bg-[#72CEFF] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.1)] border border-white/20 overflow-hidden group-hover:shadow-[0_8px_30px_rgba(114,206,255,0.3)] transition-all duration-300">
+              <div className="relative z-10 w-full h-full flex items-center justify-center p-4 bg-[#3166E2] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.1)] border border-white/20 overflow-hidden group-hover:shadow-[0_8px_30px_rgba(49,102,226,0.3)] transition-all duration-300">
                 {/* Internal light sheen animation */}
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full"
