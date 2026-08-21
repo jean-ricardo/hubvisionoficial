@@ -23,20 +23,6 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Links: Institucional */}
-          <div className="space-y-6">
-            <h4 className="text-white font-bold text-lg">Institucional</h4>
-            <ul className="space-y-4">
-              {["A Hubvision", "Ecossistema", "Cases", "Carreiras", "Blog"].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-hv-text-muted hover:text-hv-white transition-colors relative group">
-                    {link}
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-hv-blue-electric transition-all group-hover:w-full" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
 
           {/* Links: Termos */}
           <div className="space-y-6">
