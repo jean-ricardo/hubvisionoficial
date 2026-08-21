@@ -30,7 +30,7 @@ export const Partners = () => {
   const duplicatedPartners = [...partners, ...partners, ...partners];
 
   return (
-    <section className="py-20 bg-hv-bg-primary overflow-hidden border-y border-white/5">
+    <section className="py-20 bg-hv-navy-light/30 overflow-hidden border-y border-white/5">
       <div className="relative flex">
         <motion.div
           className="flex whitespace-nowrap gap-10 items-center"
@@ -46,13 +46,13 @@ export const Partners = () => {
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className="flex items-center justify-center min-w-[180px] h-20 px-6 rounded-xl transition-all duration-500 opacity-70 hover:opacity-100"
+              className="flex items-center justify-center min-w-[220px] h-24 px-6 rounded-xl transition-all duration-500 opacity-90 hover:opacity-100"
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
                 loading="lazy"
-                className="max-h-12 max-w-[140px] w-auto object-contain"
+                className="max-h-16 max-w-[180px] w-auto object-contain brightness-110"
               />
             </div>
           ))}
