@@ -7,12 +7,7 @@ export function Hero() {
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-hv-bg-primary pt-20">
       {/* Background Gradients & Glows */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 opacity-40"
-          style={{
-            background: "linear-gradient(135deg, #071329 0%, #0D1F45 45%, #2858D8 100%)",
-          }}
-        />
+
         <motion.div
           animate={shouldReduceMotion ? { opacity: 0.4 } : {
             scale: [1, 1.2, 1],
