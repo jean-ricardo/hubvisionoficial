@@ -10,7 +10,6 @@ import logoAsset from "@/assets/hubvision-logo-white.png.asset.json";
 const NAV_LINKS = [
   { label: "A Hubvision", href: "#manifesto" },
   { label: "Soluções", href: "#solutions" },
-  { label: "Ecossistema", href: "#ecosystem" },
   { label: "Cases", href: "#cases" },
   { label: "Contato", href: "#contact" },
 ];
