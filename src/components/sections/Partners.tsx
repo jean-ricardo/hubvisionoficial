@@ -30,31 +30,61 @@ export const Partners = () => {
   const duplicatedPartners = [...partners, ...partners, ...partners];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-hv-navy-light/20 to-hv-navy-light/10 overflow-hidden border-y border-white/5">
-      <div className="relative flex">
+    <section className="py-24 bg-hv-bg-primary overflow-hidden relative">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent)] pointer-events-none" />
+      
+      <div className="container px-4 mx-auto mb-12 text-center">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-hv-blue-light font-medium tracking-wider uppercase text-sm mb-4"
+        >
+          Confiança e Parceria
+        </motion.p>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-3xl md:text-4xl font-display text-white"
+        >
+          Empresas que confiam na Hubvision
+        </motion.h2>
+      </div>
+
+      <div className="relative flex items-center py-10">
+        {/* Left/Right masks for smooth entry/exit */}
+        <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-hv-bg-primary to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-hv-bg-primary to-transparent z-10 pointer-events-none" />
+
         <motion.div
-          className="flex whitespace-nowrap gap-10 items-center"
+          className="flex whitespace-nowrap gap-8 items-center"
           animate={{
             x: ["0%", "-33.33%"],
           }}
           transition={{
-            duration: 40,
+            duration: 50,
             ease: "linear",
             repeat: Infinity,
           }}
         >
           {duplicatedPartners.map((partner, index) => (
-            <div
+            <motion.div
               key={`${partner.name}-${index}`}
-              className="flex items-center justify-center min-w-[200px] h-24 px-8 rounded-2xl transition-all duration-500 bg-white/90 shadow-sm backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-105"
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="group flex items-center justify-center min-w-[200px] h-28 px-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-hv-blue-light/30"
             >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                loading="lazy"
-                className="max-h-16 max-w-[180px] w-auto object-contain"
-              />
-            </div>
+              <div className="relative w-full h-full flex items-center justify-center p-4 bg-white rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.1)] transition-all">
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  loading="lazy"
+                  className="max-h-full max-w-full w-auto object-contain transition-transform duration-500"
+                />
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
