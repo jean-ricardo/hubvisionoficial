@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <footer className="bg-[#020817] pt-24 pb-12 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
           {/* Brand Info */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center">
@@ -46,7 +46,7 @@ export const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="space-y-6">
+          <div className="space-y-6 md:text-right">
             <h4 className="text-white font-bold text-lg">Contato</h4>
             <div className="space-y-4 text-hv-text-muted">
               <p>Av. Paulista, 1000 - Bela Vista</p>
