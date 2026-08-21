@@ -10,7 +10,7 @@ import { FeaturedSolutions } from "@/components/sections/FeaturedSolutions";
 import { Integrations } from "@/components/sections/Integrations";
 import { Impact } from "@/components/sections/Impact";
 import { Cases } from "@/components/sections/Cases";
-import { Partners } from "@/components/sections/Partners";
+
 import { Differentials } from "@/components/sections/Differentials";
 import { Future } from "@/components/sections/Future";
 import { CTA } from "@/components/sections/CTA";
@@ -34,7 +34,6 @@ function Index() {
       <Integrations />
       <Impact />
       <Cases />
-      <Partners />
       <Differentials />
       <Future />
       <CTA />
