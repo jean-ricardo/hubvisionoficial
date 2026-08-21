@@ -126,22 +126,6 @@ export const FeaturedSolutions = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content Column */}
           <div className="space-y-8">
-            <div className="flex flex-wrap gap-2 md:gap-4 mb-8">
-              {solutions.map((sol, idx) => (
-                <button
-                  key={sol.id}
-                  onClick={() => setActiveTab(idx)}
-                  className={`flex-1 min-w-[100px] md:flex-none px-4 md:px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 border ${
-                    activeTab === idx
-                      ? "bg-hv-blue border-hv-blue-electric text-hv-white shadow-[0_0_20px_rgba(40,88,216,0.3)]"
-                      : "bg-transparent border-white/10 text-hv-text-secondary hover:border-white/30"
-                  }`}
-                >
-                  {sol.name}
-                </button>
-              ))}
-            </div>
-
             <AnimatePresence mode="wait">
               {solutions[activeTab] && (
                 <motion.div
@@ -181,6 +165,40 @@ export const FeaturedSolutions = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Pagination Controls */}
+            <div className="flex items-center gap-4 pt-4">
+              <div className="flex gap-2">
+                {solutions.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveTab(idx)}
+                    className={`h-1.5 transition-all duration-300 rounded-full ${
+                      activeTab === idx ? "w-8 bg-hv-blue-electric" : "w-4 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Ir para solução ${idx + 1}`}
+                  />
+                ))}
+              </div>
+              <div className="flex gap-2 ml-auto">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setActiveTab((prev) => (prev > 0 ? prev - 1 : solutions.length - 1))}
+                  className="rounded-full border-white/10 bg-white/5 hover:bg-white/10 text-hv-white"
+                >
+                  <ChevronRight className="w-5 h-5 rotate-180" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setActiveTab((prev) => (prev < solutions.length - 1 ? prev + 1 : 0))}
+                  className="rounded-full border-white/10 bg-white/5 hover:bg-white/10 text-hv-white"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
           </div>
 
           {/* Mockup Column */}
