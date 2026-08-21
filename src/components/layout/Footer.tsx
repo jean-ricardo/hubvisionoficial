@@ -50,7 +50,7 @@ export const Footer = () => {
           <div className="space-y-6">
             <h4 className="text-white font-bold text-lg">Soluções</h4>
             <ul className="space-y-4">
-              {["HUBOT", "HORAPOINT", "Hub Vendas", "Integrações TOTVS", "Consultoria Cloud"].map((link) => (
+              {[].map((link) => (
                 <li key={link}>
                   <a href="#" className="text-hv-text-muted hover:text-hv-white transition-colors relative group">
                     {link}
@@ -75,7 +75,7 @@ export const Footer = () => {
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-sm font-bold tracking-widest text-hv-text-muted uppercase">
-            Tecnologia que transforma negócios<span className="text-hv-blue-electric ml-1">.</span>
+            Tecnologia que transforma negócios
           </div>
           <div className="text-hv-text-muted text-sm">
             © {currentYear} Hubvision Tecnologia. Todos os direitos reservados.
