@@ -127,8 +127,6 @@ export const FeaturedSolutions = () => {
           {/* Content Column */}
           <div className="space-y-8">
             <AnimatePresence mode="wait">
-
-            <AnimatePresence mode="wait">
               {solutions[activeTab] && (
                 <motion.div
                   key={activeTab}
@@ -167,6 +165,40 @@ export const FeaturedSolutions = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Pagination Controls */}
+            <div className="flex items-center gap-4 pt-4">
+              <div className="flex gap-2">
+                {solutions.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveTab(idx)}
+                    className={`h-1.5 transition-all duration-300 rounded-full ${
+                      activeTab === idx ? "w-8 bg-hv-blue-electric" : "w-4 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Ir para solução ${idx + 1}`}
+                  />
+                ))}
+              </div>
+              <div className="flex gap-2 ml-auto">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setActiveTab((prev) => (prev > 0 ? prev - 1 : solutions.length - 1))}
+                  className="rounded-full border-white/10 bg-white/5 hover:bg-white/10 text-hv-white"
+                >
+                  <ChevronRight className="w-5 h-5 rotate-180" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setActiveTab((prev) => (prev < solutions.length - 1 ? prev + 1 : 0))}
+                  className="rounded-full border-white/10 bg-white/5 hover:bg-white/10 text-hv-white"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
           </div>
 
           {/* Mockup Column */}
