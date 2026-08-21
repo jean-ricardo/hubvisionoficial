@@ -73,15 +73,51 @@ export const Partners = () => {
           {duplicatedPartners.map((partner, index) => (
             <motion.div
               key={`${partner.name}-${index}`}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="group flex items-center justify-center min-w-[200px] h-28 px-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-hv-blue-light/30"
+              whileHover={{ y: -5, scale: 1.05 }}
+              className="group relative flex items-center justify-center min-w-[200px] h-28 px-8"
             >
-              <div className="relative w-full h-full flex items-center justify-center p-4 bg-[#72CEFF] rounded-xl shadow-[0_0_20px_rgba(114,206,255,0.1)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] transition-all">
+              {/* Animated particle-like background elements around the card */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-hv-blue-light rounded-full"
+                    animate={{
+                      y: [0, -20, -40],
+                      x: [0, (i % 2 === 0 ? 20 : -20), (i % 2 === 0 ? 40 : -40)],
+                      opacity: [0, 1, 0],
+                      scale: [0, 1.5, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.3,
+                      ease: "easeOut",
+                    }}
+                    style={{
+                      left: `${20 + i * 12}%`,
+                      top: '50%',
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Glowing outer ring */}
+              <div className="absolute inset-2 rounded-2xl bg-hv-blue-light/0 group-hover:bg-hv-blue-light/5 blur-xl transition-all duration-500" />
+              
+              <div className="relative z-10 w-full h-full flex items-center justify-center p-4 bg-[#72CEFF] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.1)] border border-white/20 overflow-hidden group-hover:shadow-[0_8px_30px_rgba(114,206,255,0.3)] transition-all duration-300">
+                {/* Internal light sheen animation */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full"
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+                />
+                
                 <img
                   src={partner.logo}
                   alt={partner.name}
                   loading="lazy"
-                  className="max-h-full max-w-full w-auto object-contain transition-transform duration-500"
+                  className="relative z-10 max-h-full max-w-full w-auto object-contain transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
             </motion.div>
