@@ -52,8 +52,7 @@ export const Footer = () => {
             <ul className="space-y-4">
               {[
                 { label: "Termos de Uso", href: "/terms" },
-                { label: "Privacidade", href: "#" },
-                { label: "Segurança", href: "#" },
+                { label: "Privacidade e Segurança", href: "/privacy" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link 
