@@ -1,62 +1,56 @@
 import { motion } from "framer-motion";
 
 const partners = [
-  { name: "TOTVS", logo: "[ Logo ]" }, // TODO: Content - Replace with real SVG logos
-  { name: "AWS", logo: "[ Logo ]" },
-  { name: "Google Cloud", logo: "[ Logo ]" },
-  { name: "RD Station", logo: "[ Logo ]" },
-  { name: "Meta", logo: "[ Logo ]" },
-  { name: "OpenAI", logo: "[ Logo ]" },
-  { name: "Microsoft", logo: "[ Logo ]" },
-  { name: "Vtex", logo: "[ Logo ]" },
+  { name: "TOTVS", logo: "/lovable-uploads/48e91689-d101-447b-a634-110037f59d43.png" },
+  { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" },
+  { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" },
+  { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" },
+  { name: "Oracle", logo: "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" },
+  { name: "Salesforce", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg" },
+  { name: "SAP", logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" },
+  { name: "IBM", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" },
 ];
 
 export const Partners = () => {
-  return (
-    <section className="bg-hv-bg-secondary py-24 px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-hv-white"
-          >
-            Construímos conexões que ampliam possibilidades
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-hv-text-secondary max-w-2xl mx-auto"
-          >
-            Nossa rede de parceiros e associados amplia nossa capacidade de criar, integrar e levar soluções ao mercado.
-          </motion.p>
-        </div>
+  // Triple the partners for a seamless loop
+  const duplicatedPartners = [...partners, ...partners, ...partners];
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          {partners.map((partner, index) => (
-            <motion.div
-              key={partner.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="h-32 rounded-xl bg-hv-bg-surface border border-white/5 flex items-center justify-center grayscale hover:grayscale-0 transition-all group relative overflow-hidden"
+  return (
+    <section className="py-20 bg-hv-bg-primary overflow-hidden border-y border-white/5">
+      <div className="relative flex">
+        <motion.div
+          className="flex whitespace-nowrap gap-12 items-center"
+          animate={{
+            x: ["0%", "-33.33%"],
+          }}
+          transition={{
+            duration: 30,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        >
+          {duplicatedPartners.map((partner, index) => (
+            <div
+              key={`${partner.name}-${index}`}
+              className="flex items-center justify-center min-w-[160px] h-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
             >
-              {/* Logo Placeholder */}
-              <span className="text-hv-text-muted text-sm font-bold group-hover:text-hv-white transition-colors relative z-10">
-                {partner.name}
-              </span>
-              
-              {/* Decorative line */}
-              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-hv-blue-electric scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-            </motion.div>
+              {partner.logo.startsWith("http") || partner.logo.startsWith("/") ? (
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-h-8 w-auto object-contain"
+                />
+              ) : (
+                <span className="text-hv-white font-bold">{partner.name}</span>
+              )}
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
+      
+      {/* Visual edge fades */}
+      <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-hv-bg-primary to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-hv-bg-primary to-transparent z-10 pointer-events-none" />
     </section>
   );
 };

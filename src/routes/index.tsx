@@ -9,6 +9,7 @@ import { Services } from "@/components/sections/Services";
 import { FeaturedSolutions } from "@/components/sections/FeaturedSolutions";
 import { Integrations } from "@/components/sections/Integrations";
 import { Impact } from "@/components/sections/Impact";
+import { Partners } from "@/components/sections/Partners";
 import { Cases } from "@/components/sections/Cases";
 
 import { Differentials } from "@/components/sections/Differentials";
@@ -33,6 +34,7 @@ function Index() {
       <FeaturedSolutions />
       <Integrations />
       <Impact />
+      <Partners />
       <Cases />
       <Differentials />
       <Future />
