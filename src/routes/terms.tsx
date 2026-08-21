@@ -1,5 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
+import { ArrowLeft } from 'lucide-react';
 
 export const Route = createFileRoute('/terms')({
   component: TermsPage,
@@ -23,6 +24,13 @@ function TermsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <Link 
+            to="/" 
+            className="inline-flex items-center gap-2 text-hv-blue-electric hover:text-white transition-colors mb-8 group"
+          >
+            <ArrowLeft size={20} className="transition-transform group-hover:-translate-x-1" />
+            <span className="font-bold">Voltar para o site</span>
+          </Link>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 font-space-grotesk">
             Termos de Uso
           </h1>
