@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 export const CTA = () => {
   return (
@@ -47,6 +48,7 @@ export const CTA = () => {
               <Button 
                 size="lg" 
                 className="bg-white text-hv-blue hover:bg-hv-bg-light h-16 px-10 text-xl font-bold shadow-[0_0_50px_rgba(255,255,255,0.3)] group transition-all"
+                onClick={() => openWhatsApp()}
               >
                 Vamos conversar
                 <ArrowUpRight className="w-6 h-6 ml-2 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
