@@ -48,9 +48,6 @@ export const Partners = () => {
         </motion.div>
       </div>
       
-      {/* Visual edge fades */}
-      <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-hv-bg-primary to-transparent z-10 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-hv-bg-primary to-transparent z-10 pointer-events-none" />
     </section>
   );
 };
