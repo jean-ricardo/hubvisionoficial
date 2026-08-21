@@ -49,10 +49,10 @@ export const Footer = () => {
           <div className="space-y-6 md:text-right">
             <h4 className="text-white font-bold text-lg">Contato</h4>
             <div className="space-y-4 text-hv-text-muted">
-              <p>Av. Paulista, 1000 - Bela Vista</p>
-              <p>São Paulo, SP - 01310-100</p>
-              <p className="pt-2">contato@hubvision.tech</p>
-              <p>+55 (11) 4004-0000</p>
+              <p>Rua Bruno Veloso 603 - Recife. PE</p>
+              <p></p>
+              <p className="pt-2">diego@hubvision.com.br</p>
+              <p>(81) 99669-6708</p>
             </div>
           </div>
         </div>
