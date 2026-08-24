@@ -1,36 +1,35 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import amigo from "@/assets/cliente-amigo.png.asset.json";
-import autoNorte from "@/assets/cliente-auto-norte.png.asset.json";
-import asa from "@/assets/cliente-asa.png.asset.json";
-import bokus from "@/assets/cliente-bokus.png.asset.json";
-import damaq from "@/assets/cliente-damaq.png.asset.json";
-import pmPolimeros from "@/assets/cliente-pm-polimeros.png.asset.json";
-import divisao from "@/assets/cliente-divisao.png.asset.json";
-import edilimp from "@/assets/cliente-edilimp.png.asset.json";
-import solplast from "@/assets/cliente-solplast.png.asset.json";
-import mauricea from "@/assets/cliente-mauricea.webp.asset.json";
+import amigo from "@/assets/amigo.png.asset.json";
+import autoNorte from "@/assets/auto-norte.png.asset.json";
+import asa from "@/assets/asa-rent-a-car.png.asset.json";
+import bokus from "@/assets/bokus.png.asset.json";
+import damaq from "@/assets/damaq.png.asset.json";
+import divisao from "@/assets/divisao.png.asset.json";
+import edilimp from "@/assets/edilimp.png.asset.json";
+import mauricea from "@/assets/mauricea.png.asset.json";
+import rmPolimeros from "@/assets/rm-polimeros.png.asset.json";
+import solPlast from "@/assets/sol-plast.png.asset.json";
 
 type Partner = {
   name: string;
   logo: string;
-  /** Logo branca/monocromática: o destaque vem da superfície do card, não da cor */
+  /** Grupo B — logo sem cor própria (branca): o destaque vem da superfície do card, não da cor */
   mono?: boolean;
-  /** Logo monocromática escura: invertida para branco para ficar legível no card escuro */
-  invert?: boolean;
 };
 
+// Logos já tratadas (fundo removido, margens normalizadas) — usar como estão.
 const partners: Partner[] = [
   { name: "Amigo", logo: amigo.url },
   { name: "Auto Norte", logo: autoNorte.url },
   { name: "ASA Rent a Car", logo: asa.url },
   { name: "Boku's", logo: bokus.url },
   { name: "Damaq Equipamentos", logo: damaq.url },
-  { name: "P&M Polímeros", logo: pmPolimeros.url, mono: true },
-  { name: "Divisão Industrial e Marítimo", logo: divisao.url, mono: true, invert: true },
+  { name: "Divisão Industrial e Marítimo", logo: divisao.url, mono: true },
   { name: "Edilimp", logo: edilimp.url },
-  { name: "SolPlast", logo: solplast.url },
   { name: "Mauricéa", logo: mauricea.url },
+  { name: "R&M Polímeros", logo: rmPolimeros.url },
+  { name: "SolPlast", logo: solPlast.url },
 ];
 
 const cardBase =
@@ -42,11 +41,15 @@ const cardInteractive = cn(
   "group-hover:border-[rgba(51,104,232,0.4)] group-hover:shadow-[0_0_40px_rgba(51,104,232,0.25)]"
 );
 
+/** Grupo A — logos coloridas: repouso em cinza dessaturado, cor real no hover */
 const logoColored =
   "opacity-75 grayscale brightness-[1.8] contrast-[0.9] group-hover:opacity-100 group-hover:grayscale-0 group-hover:brightness-100 group-hover:contrast-100";
 
-const logoMono =
-  "opacity-75 group-hover:opacity-100 group-hover:scale-105";
+/** Grupo B — logo branca/monocromática: destaque pela luz do card */
+const logoMono = "opacity-75 group-hover:opacity-100 group-hover:scale-105";
+
+/** Altura padronizada — os arquivos já têm margens normalizadas, sem ajuste por logo */
+const logoSize = "h-9 md:h-[42px] w-auto object-contain";
 
 /** Card usado no marquee (desktop) — revelação via hover */
 const MarqueeCard = ({ partner, ariaHidden }: { partner: Partner; ariaHidden?: boolean }) => (
@@ -60,9 +63,9 @@ const MarqueeCard = ({ partner, ariaHidden }: { partner: Partner; ariaHidden?: b
         alt={ariaHidden ? "" : partner.name}
         loading="lazy"
         className={cn(
-          "max-h-full max-w-full w-auto object-contain transition-all duration-[400ms] ease-out",
-          partner.mono ? logoMono : logoColored,
-          partner.invert && "invert"
+          logoSize,
+          "transition-all duration-[400ms] ease-out",
+          partner.mono ? logoMono : logoColored
         )}
       />
     </div>
@@ -103,16 +106,13 @@ const GridCard = ({ partner, index }: { partner: Partner; index: number }) => (
       }}
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
-      className={cn(
-        "max-h-full max-w-full w-auto object-contain",
-        partner.invert && "invert"
-      )}
+      className={logoSize}
     />
   </motion.div>
 );
 
 export const Partners = () => {
-  // Triplica a lista para um loop contínuo e perfeito
+  // Triplica a lista para um loop contínuo e sem emenda em qualquer largura
   const duplicatedPartners = [...partners, ...partners, ...partners];
 
   return (
@@ -139,7 +139,7 @@ export const Partners = () => {
 
       {/* Marquee infinito — desktop */}
       <div className="hv-marquee relative hidden md:flex items-center py-6">
-        {/* Máscaras de fade nas bordas */}
+        {/* Máscaras de fade nas bordas (#071329 → transparente) */}
         <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-hv-bg-primary to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-hv-bg-primary to-transparent z-10 pointer-events-none" />
 
