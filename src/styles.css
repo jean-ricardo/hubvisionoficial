@@ -119,3 +119,33 @@
     font-weight: 700;
   }
 }
+
+/* Marquee infinito da seção de parceiros */
+@keyframes hv-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.3333%);
+  }
+}
+
+.hv-marquee-track {
+  animation: hv-marquee 55s linear infinite;
+  will-change: transform;
+}
+
+/* Pausa o scroll ao passar o mouse sobre o container */
+.hv-marquee:hover .hv-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Respeita prefers-reduced-motion: para a animação e mostra grade estática */
+@media (prefers-reduced-motion: reduce) {
+  .hv-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 1.5rem;
+  }
+}
