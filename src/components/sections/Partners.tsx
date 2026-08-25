@@ -16,18 +16,23 @@ type Partner = {
   logo: string;
   /** Grupo B — logo sem cor própria (branca): o destaque vem da superfície do card, não da cor */
   mono?: boolean;
+  /** Ajuste fino de altura para logos com muito espaço interno */
+  sizeClass?: string;
 };
+
+/** Altura maior para logos com margens internas grandes */
+const logoSizeLarge = "h-12 md:h-[58px] w-auto object-contain";
 
 // Logos já tratadas (fundo removido, margens normalizadas) — usar como estão.
 const partners: Partner[] = [
   { name: "Amigo", logo: amigo.url },
-  { name: "Auto Norte", logo: autoNorte.url },
+  { name: "Auto Norte", logo: autoNorte.url, sizeClass: logoSizeLarge },
   { name: "ASA Rent a Car", logo: asa.url },
-  { name: "Boku's", logo: bokus.url },
+  { name: "Boku's", logo: bokus.url, sizeClass: logoSizeLarge },
   { name: "Damaq Equipamentos", logo: damaq.url },
   { name: "Divisão Industrial e Marítimo", logo: divisao.url, mono: true },
-  { name: "Edilimp", logo: edilimp.url },
-  { name: "Mauricéa", logo: mauricea.url },
+  { name: "Edilimp", logo: edilimp.url, sizeClass: logoSizeLarge },
+  { name: "Mauricéa", logo: mauricea.url, sizeClass: logoSizeLarge },
   { name: "R&M Polímeros", logo: rmPolimeros.url },
   { name: "SolPlast", logo: solPlast.url },
 ];
@@ -63,7 +68,7 @@ const MarqueeCard = ({ partner, ariaHidden }: { partner: Partner; ariaHidden?: b
         alt={ariaHidden ? "" : partner.name}
         loading="lazy"
         className={cn(
-          logoSize,
+          partner.sizeClass ?? logoSize,
           "transition-all duration-[400ms] ease-out",
           partner.mono ? logoMono : logoColored
         )}
@@ -106,7 +111,7 @@ const GridCard = ({ partner, index }: { partner: Partner; index: number }) => (
       }}
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
-      className={logoSize}
+      className={partner.sizeClass ?? logoSize}
     />
   </motion.div>
 );
