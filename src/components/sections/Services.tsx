@@ -195,7 +195,7 @@ export function Services() {
             >
               <span className="relative -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
                 <span className="absolute w-9 h-9 rounded-full bg-hv-blue-electric/25 animate-ping" />
-                <span className="absolute w-6 h-6 rounded-full bg-hv-blue-brand/40 blur-[6px]" />
+                <span className="absolute w-6 h-6 rounded-full bg-hv-blue-electric/40 blur-[6px]" />
                 <MousePointer2
                   className="relative w-5 h-5 text-hv-blue-electric drop-shadow-[0_0_10px_rgba(51,104,232,0.8)]"
                   strokeWidth={2}
