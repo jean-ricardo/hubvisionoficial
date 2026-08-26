@@ -32,7 +32,7 @@ const partners: Partner[] = [
   { name: "Amigo", logo: amigo.url },
   { name: "Auto Norte", logo: autoNorte.url, sizeClass: logoSizeLarge },
   { name: "ASA Rent a Car", logo: asa.url, sizeClass: logoSizeXLarge },
-  { name: "Boku's", logo: bokus.url, sizeClass: logoSizeXLarge },
+  { name: "Boku's", logo: bokus.url, sizeClass: logoSizeMax },
   { name: "Damaq Equipamentos", logo: damaq.url },
   { name: "Divisão Industrial e Marítimo", logo: divisao.url, mono: true },
   { name: "Edilimp", logo: edilimp.url, sizeClass: logoSizeLarge },
