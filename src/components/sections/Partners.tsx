@@ -24,13 +24,15 @@ type Partner = {
 const logoSizeLarge = "h-12 md:h-[58px] w-auto object-contain";
 /** Altura extra para logos que precisam de destaque visual */
 const logoSizeXLarge = "h-14 md:h-[68px] w-auto object-contain";
+/** Altura máxima para logos que ainda precisam de mais presença */
+const logoSizeMax = "h-16 md:h-[78px] w-auto object-contain";
 
 // Logos já tratadas (fundo removido, margens normalizadas) — usar como estão.
 const partners: Partner[] = [
   { name: "Amigo", logo: amigo.url },
   { name: "Auto Norte", logo: autoNorte.url, sizeClass: logoSizeLarge },
   { name: "ASA Rent a Car", logo: asa.url, sizeClass: logoSizeXLarge },
-  { name: "Boku's", logo: bokus.url, sizeClass: logoSizeXLarge },
+  { name: "Boku's", logo: bokus.url, sizeClass: logoSizeMax },
   { name: "Damaq Equipamentos", logo: damaq.url },
   { name: "Divisão Industrial e Marítimo", logo: divisao.url, mono: true },
   { name: "Edilimp", logo: edilimp.url, sizeClass: logoSizeLarge },
