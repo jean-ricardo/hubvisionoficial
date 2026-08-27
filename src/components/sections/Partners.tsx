@@ -144,7 +144,7 @@ export const Partners = () => {
           transition={{ delay: 0.1 }}
           className="text-3xl md:text-4xl font-display text-hv-white"
         >
-          Empresas que confiam na Hubvision
+          Empresas que confiam na HubVision
         </motion.h2>
       </div>
 
