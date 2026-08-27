@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { clsx } from "clsx";
@@ -7,24 +7,47 @@ import { motion, AnimatePresence } from "framer-motion";
 import logoAsset from "@/assets/hubvision-logo-white.png.asset.json";
 import { openWhatsApp } from "@/lib/whatsapp";
 
+const HEADER_OFFSET = 80;
 
 const NAV_LINKS = [
-  { label: "A HubVision", href: "#manifesto" },
-  { label: "Soluções", href: "#solutions" },
-  { label: "Cases", href: "#cases" },
-  { label: "Contato", href: "#contact" },
+  { label: "Quem Somos", id: "quem-somos" },
+  { label: "Soluções", id: "solucoes" },
+  { label: "Plataformas", id: "plataformas" },
+  { label: "Parceiros", id: "parceiros" },
+  { label: "Cases", id: "cases" },
+  { label: "Contato", id: "contact" },
 ];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Scrollspy: seção cujo topo já passou pela linha do header
+      let current: string | null = null;
+      for (const link of NAV_LINKS) {
+        const el = document.getElementById(link.id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top - HEADER_OFFSET - 8;
+        if (top <= 0) current = link.id;
+      }
+      setActiveId(current);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
   }, []);
 
   return (
@@ -40,53 +63,64 @@ export function Header() {
         <Link to="/" className="flex items-center shrink-0">
           <img
             src={logoAsset.url}
-            alt="Hubvision"
+            alt="HubVision"
             className="h-7 w-auto sm:h-8 md:h-10 lg:h-11 transition-all"
           />
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-xs xl:text-sm font-medium text-hv-text-secondary transition-colors hover:text-hv-white whitespace-nowrap"
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = activeId === link.id;
+            return (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                aria-current={isActive ? "true" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.id);
+                }}
+                className={clsx(
+                  "relative py-1 text-xs xl:text-sm font-medium font-inter transition-colors whitespace-nowrap",
+                  isActive
+                    ? "text-hv-white"
+                    : "text-hv-text-secondary hover:text-hv-white"
+                )}
+              >
+                {link.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active-underline"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-hv-blue-electric"
+                  />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4 shrink-0">
-          <Button 
-            variant="primary" 
-            size="sm" 
-            className="hidden lg:inline-flex"
+        <div className="flex items-center gap-2 md:gap-4 shrink-0">
+          <Button
+            variant="primary"
+            size="sm"
             onClick={() => openWhatsApp()}
           >
             Fale conosco
           </Button>
-          
-          {/* Mobile Toggle inside the flex div for md screens */}
+
           <button
             className="lg:hidden text-hv-white p-2"
+            aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Toggle for small screens (< md) */}
-        <button
-          className="md:hidden text-hv-white p-2 shrink-0"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile / Tablet Drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -94,32 +128,42 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-40 flex flex-col bg-hv-bg-primary pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-hv-bg-surface pt-24 px-6 lg:hidden"
           >
-            <nav className="flex flex-col gap-6">
+            <nav className="flex flex-col gap-5">
               {NAV_LINKS.map((link, idx) => (
                 <motion.a
-                  key={link.label}
-                  href={link.href}
+                  key={link.id}
+                  href={`#${link.id}`}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + idx * 0.05 }}
-                  className="text-2xl font-bold text-hv-white border-b border-hv-border pb-4"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={clsx(
+                    "text-2xl font-bold border-b border-hv-border pb-4",
+                    activeId === link.id ? "text-hv-white" : "text-hv-text-secondary"
+                  )}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                    setTimeout(() => scrollToSection(link.id), 120);
+                  }}
                 >
                   {link.label}
                 </motion.a>
               ))}
             </nav>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
               className="mt-auto mb-12"
             >
-              <Button 
+              <Button
                 className="w-full h-16 text-lg"
-                onClick={() => openWhatsApp()}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openWhatsApp();
+                }}
               >
                 Fale conosco
               </Button>

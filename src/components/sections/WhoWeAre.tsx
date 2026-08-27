@@ -3,7 +3,7 @@ import stickerAsset from "@/assets/Adesivo_4.png.asset.json";
 
 export function WhoWeAre() {
   return (
-    <section id="whoweare" className="relative w-full bg-hv-bg-light py-32 overflow-hidden">
+    <section id="quem-somos" className="relative w-full bg-hv-bg-light py-32 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
