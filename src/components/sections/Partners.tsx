@@ -38,9 +38,9 @@ const partners: Partner[] = [
   { name: "Edilimp", logo: edilimp.url, sizeClass: logoSizeLarge },
   { name: "Mauricéa", logo: mauricea.url, sizeClass: logoSizeLarge },
   { name: "R&M Polímeros", logo: rmPolimeros.url },
-  { name: "BrasMundi", logo: brasmundi.url },
-  { name: "Fruta Pluss", logo: frutaPluss.url },
-  { name: "Zero Um Informática & Engenharia", logo: zeroUm.url },
+  { name: "BrasMundi", logo: brasmundi.url, sizeClass: logoSizeLarge },
+  { name: "Fruta Pluss", logo: frutaPluss.url, sizeClass: logoSizeLarge },
+  { name: "Zero Um Informática & Engenharia", logo: zeroUm.url, sizeClass: logoSizeLarge },
 ];
 
 const cardBase =
