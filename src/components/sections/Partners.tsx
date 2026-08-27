@@ -42,6 +42,9 @@ const partners: Partner[] = [
   { name: "Mauricéa", logo: mauricea.url, sizeClass: logoSizeLarge },
   { name: "R&M Polímeros", logo: rmPolimeros.url },
   { name: "SolPlast", logo: solPlast.url },
+  { name: "BrasMundi", logo: brasmundi.url },
+  { name: "Fruta Pluss", logo: frutaPluss.url },
+  { name: "Zero Um Informática & Engenharia", logo: zeroUm.url },
 ];
 
 const cardBase =
