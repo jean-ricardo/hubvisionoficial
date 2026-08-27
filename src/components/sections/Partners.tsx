@@ -10,6 +10,9 @@ import edilimp from "@/assets/edilimp.png.asset.json";
 import mauricea from "@/assets/mauricea.png.asset.json";
 import rmPolimeros from "@/assets/rm-polimeros.png.asset.json";
 import solPlast from "@/assets/sol-plast.png.asset.json";
+import brasmundi from "@/assets/brasmundi.png.asset.json";
+import frutaPluss from "@/assets/fruta-pluss.png.asset.json";
+import zeroUm from "@/assets/zero-um.png.asset.json";
 
 type Partner = {
   name: string;
@@ -39,6 +42,9 @@ const partners: Partner[] = [
   { name: "Mauricéa", logo: mauricea.url, sizeClass: logoSizeLarge },
   { name: "R&M Polímeros", logo: rmPolimeros.url },
   { name: "SolPlast", logo: solPlast.url },
+  { name: "BrasMundi", logo: brasmundi.url },
+  { name: "Fruta Pluss", logo: frutaPluss.url },
+  { name: "Zero Um Informática & Engenharia", logo: zeroUm.url },
 ];
 
 const cardBase =
