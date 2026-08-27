@@ -127,7 +127,7 @@ export const Partners = () => {
   const duplicatedPartners = [...partners, ...partners, ...partners];
 
   return (
-    <section className="py-24 bg-hv-bg-primary overflow-hidden relative">
+    <section id="parceiros" className="py-24 bg-hv-bg-primary overflow-hidden relative">
       <div className="container px-4 mx-auto mb-12 text-center">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -142,7 +142,7 @@ export const Partners = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-3xl md:text-4xl font-display text-hv-white"
+          className="text-4xl md:text-5xl font-bold text-hv-white"
         >
           Empresas que confiam na HubVision
         </motion.h2>

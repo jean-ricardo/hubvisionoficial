@@ -102,7 +102,7 @@ export const FeaturedSolutions = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
-    <section ref={sectionRef} className="bg-hv-bg-surface py-24 px-6 overflow-hidden">
+    <section id="plataformas" ref={sectionRef} className="bg-hv-bg-surface py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <motion.h2
