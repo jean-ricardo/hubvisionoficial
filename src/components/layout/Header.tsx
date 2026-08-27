@@ -9,7 +9,7 @@ import { openWhatsApp } from "@/lib/whatsapp";
 
 
 const NAV_LINKS = [
-  { label: "A Hubvision", href: "#manifesto" },
+  { label: "A HubVision", href: "#manifesto" },
   { label: "Soluções", href: "#solutions" },
   { label: "Cases", href: "#cases" },
   { label: "Contato", href: "#contact" },
