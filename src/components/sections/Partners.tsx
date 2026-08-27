@@ -3,13 +3,11 @@ import { cn } from "@/lib/utils";
 import amigo from "@/assets/amigo.png.asset.json";
 import autoNorte from "@/assets/auto-norte.png.asset.json";
 import asa from "@/assets/asa-rent-a-car.png.asset.json";
-import bokus from "@/assets/bokus.png.asset.json";
 import damaq from "@/assets/damaq.png.asset.json";
 import divisao from "@/assets/divisao.png.asset.json";
 import edilimp from "@/assets/edilimp.png.asset.json";
 import mauricea from "@/assets/mauricea.png.asset.json";
 import rmPolimeros from "@/assets/rm-polimeros.png.asset.json";
-import solPlast from "@/assets/sol-plast.png.asset.json";
 import brasmundi from "@/assets/brasmundi.png.asset.json";
 import frutaPluss from "@/assets/fruta-pluss.png.asset.json";
 import zeroUm from "@/assets/zero-um.png.asset.json";
@@ -35,13 +33,11 @@ const partners: Partner[] = [
   { name: "Amigo", logo: amigo.url },
   { name: "Auto Norte", logo: autoNorte.url, sizeClass: logoSizeLarge },
   { name: "ASA Rent a Car", logo: asa.url, sizeClass: logoSizeXLarge },
-  { name: "Boku's", logo: bokus.url, sizeClass: logoSizeMax },
   { name: "Damaq Equipamentos", logo: damaq.url },
   { name: "Divisão Industrial e Marítimo", logo: divisao.url, mono: true },
   { name: "Edilimp", logo: edilimp.url, sizeClass: logoSizeLarge },
   { name: "Mauricéa", logo: mauricea.url, sizeClass: logoSizeLarge },
   { name: "R&M Polímeros", logo: rmPolimeros.url },
-  { name: "SolPlast", logo: solPlast.url },
   { name: "BrasMundi", logo: brasmundi.url },
   { name: "Fruta Pluss", logo: frutaPluss.url },
   { name: "Zero Um Informática & Engenharia", logo: zeroUm.url },
