@@ -48,11 +48,16 @@ export function Header() {
 
   const scrollToSection = useCallback((id: string) => {
     const el = document.getElementById(id);
-    if (!el) return;
+    if (!el) {
+      // Em páginas internas, volta para a home na âncora correspondente
+      window.location.href = `/#${id}`;
+      return;
+    }
     const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
   }, []);
+
 
   return (
     <header
