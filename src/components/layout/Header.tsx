@@ -9,14 +9,18 @@ import { openWhatsApp } from "@/lib/whatsapp";
 
 const HEADER_OFFSET = 80;
 
-const NAV_LINKS = [
+type NavLink = { label: string; id: string; to?: "/novidades" };
+
+const NAV_LINKS: NavLink[] = [
   { label: "Quem Somos", id: "quem-somos" },
   { label: "Soluções", id: "solucoes" },
   { label: "Plataformas", id: "plataformas" },
   { label: "Parceiros", id: "parceiros" },
   { label: "Cases", id: "cases" },
+  { label: "Novidades", id: "novidades", to: "/novidades" },
   { label: "Contato", id: "contact" },
 ];
+
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
