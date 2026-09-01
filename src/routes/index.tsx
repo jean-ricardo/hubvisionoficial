@@ -11,6 +11,7 @@ import { Integrations } from "@/components/sections/Integrations";
 import { Impact } from "@/components/sections/Impact";
 import { Partners } from "@/components/sections/Partners";
 import { Cases } from "@/components/sections/Cases";
+import { News } from "@/components/sections/News";
 
 import { Differentials } from "@/components/sections/Differentials";
 import { Future } from "@/components/sections/Future";
@@ -36,6 +37,7 @@ function Index() {
       <Impact />
       <Partners />
       <Cases />
+      <News />
       <Differentials />
       <Future />
       <CTA />
