@@ -81,6 +81,30 @@ export function Header() {
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {NAV_LINKS.map((link) => {
             const isActive = activeId === link.id;
+            const className = clsx(
+              "relative py-1 text-xs xl:text-sm font-medium font-inter transition-colors whitespace-nowrap",
+              isActive ? "text-hv-white" : "text-hv-text-secondary hover:text-hv-white"
+            );
+            const underline = isActive ? (
+              <motion.span
+                layoutId="nav-active-underline"
+                className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-hv-blue-electric"
+              />
+            ) : null;
+
+            if (link.to) {
+              return (
+                <Link
+                  key={link.id}
+                  to={link.to}
+                  className={className}
+                  activeProps={{ className: clsx(className, "text-hv-white") }}
+                >
+                  {link.label}
+                </Link>
+              );
+            }
+
             return (
               <a
                 key={link.id}
@@ -90,23 +114,14 @@ export function Header() {
                   e.preventDefault();
                   scrollToSection(link.id);
                 }}
-                className={clsx(
-                  "relative py-1 text-xs xl:text-sm font-medium font-inter transition-colors whitespace-nowrap",
-                  isActive
-                    ? "text-hv-white"
-                    : "text-hv-text-secondary hover:text-hv-white"
-                )}
+                className={className}
               >
                 {link.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-active-underline"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-hv-blue-electric"
-                  />
-                )}
+                {underline}
               </a>
             );
           })}
+
         </nav>
 
         <div className="flex items-center gap-2 md:gap-4 shrink-0">
