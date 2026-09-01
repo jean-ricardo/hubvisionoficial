@@ -194,10 +194,11 @@ export function Header() {
                     setTimeout(() => scrollToSection(link.id), 120);
                   }}
                 >
-
                   {link.label}
                 </motion.a>
-              ))}
+                );
+              })}
+
             </nav>
             <motion.div
               initial={{ opacity: 0 }}
