@@ -155,23 +155,46 @@ export function Header() {
             className="fixed inset-0 z-40 flex flex-col bg-hv-bg-surface pt-24 px-6 lg:hidden"
           >
             <nav className="flex flex-col gap-5">
-              {NAV_LINKS.map((link, idx) => (
+              {NAV_LINKS.map((link, idx) => {
+                const itemClass = clsx(
+                  "text-2xl font-bold border-b border-hv-border pb-4",
+                  activeId === link.id ? "text-hv-white" : "text-hv-text-secondary"
+                );
+
+                if (link.to) {
+                  return (
+                    <motion.div
+                      key={link.id}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + idx * 0.05 }}
+                    >
+                      <Link
+                        to={link.to}
+                        className={clsx(itemClass, "block")}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                }
+
+                return (
                 <motion.a
                   key={link.id}
                   href={`#${link.id}`}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + idx * 0.05 }}
-                  className={clsx(
-                    "text-2xl font-bold border-b border-hv-border pb-4",
-                    activeId === link.id ? "text-hv-white" : "text-hv-text-secondary"
-                  )}
+                  className={itemClass}
                   onClick={(e) => {
                     e.preventDefault();
                     setIsMobileMenuOpen(false);
                     setTimeout(() => scrollToSection(link.id), 120);
                   }}
                 >
+
                   {link.label}
                 </motion.a>
               ))}
