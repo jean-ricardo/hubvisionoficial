@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { clsx } from "clsx";
-import { formatarDataCurta, type Novidade } from "@/data/novidades";
+import { formatarDataCurta, type Novidade } from "@/lib/novidades";
 
 interface NewsCardProps {
   novidade: Novidade;
@@ -26,12 +26,14 @@ export function NewsCard({ novidade, index = 0 }: NewsCardProps) {
         className="flex h-full flex-col overflow-hidden rounded-2xl border border-hv-border bg-hv-bg-surface transition-all duration-[250ms] hover:-translate-y-1 hover:border-hv-border-strong hover:bg-hv-bg-highlight focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hv-blue-electric motion-reduce:transition-none motion-reduce:hover:translate-y-0"
       >
         <div className="relative aspect-video w-full overflow-hidden bg-hv-bg-secondary">
-          <img
-            src={novidade.imagemCapa}
-            alt={novidade.titulo}
-            loading="lazy"
-            className="h-full w-full object-cover opacity-90 transition-opacity duration-[250ms] group-hover:opacity-100"
-          />
+          {novidade.imagemCapa ? (
+            <img
+              src={novidade.imagemCapa}
+              alt={novidade.titulo}
+              loading="lazy"
+              className="h-full w-full object-cover opacity-90 transition-opacity duration-[250ms] group-hover:opacity-100"
+            />
+          ) : null}
         </div>
 
         <div className="flex flex-1 flex-col p-6">

@@ -1,11 +1,17 @@
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 import { NewsCard } from "@/components/news/NewsCard";
-import { novidadesOrdenadas } from "@/data/novidades";
+import { fetchNovidadesPublicadas } from "@/lib/novidades";
 
 export function News() {
-  const destaques = novidadesOrdenadas.slice(0, 4);
+  const { data } = useQuery({
+    queryKey: ["novidades", "publicadas"],
+    queryFn: fetchNovidadesPublicadas,
+  });
+
+  const destaques = (data ?? []).slice(0, 4);
 
   return (
     <section
