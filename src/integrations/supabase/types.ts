@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      novidades: {
+        Row: {
+          autor: string
+          created_at: string
+          data_publicacao: string
+          id: string
+          imagem_capa: string | null
+          link_linkedin: string
+          publicado: boolean
+          resumo: string
+          titulo: string
+        }
+        Insert: {
+          autor: string
+          created_at?: string
+          data_publicacao: string
+          id?: string
+          imagem_capa?: string | null
+          link_linkedin: string
+          publicado?: boolean
+          resumo: string
+          titulo: string
+        }
+        Update: {
+          autor?: string
+          created_at?: string
+          data_publicacao?: string
+          id?: string
+          imagem_capa?: string | null
+          link_linkedin?: string
+          publicado?: boolean
+          resumo?: string
+          titulo?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
