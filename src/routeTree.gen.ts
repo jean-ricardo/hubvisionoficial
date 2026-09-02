@@ -14,6 +14,7 @@ import { Route as NovidadesRouteImport } from './routes/novidades'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminNovidadesRouteImport } from './routes/admin/novidades'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminNovidadesRoute = AdminNovidadesRouteImport.update({
+  id: '/admin/novidades',
+  path: '/admin/novidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/novidades': typeof AdminNovidadesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/novidades': typeof AdminNovidadesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,33 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/novidades': typeof AdminNovidadesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/novidades' | '/privacy' | '/terms' | '/admin/login'
+  fullPaths:
+    | '/'
+    | '/novidades'
+    | '/privacy'
+    | '/terms'
+    | '/admin/login'
+    | '/admin/novidades'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/novidades' | '/privacy' | '/terms' | '/admin/login'
-  id: '__root__' | '/' | '/novidades' | '/privacy' | '/terms' | '/admin/login'
+  to:
+    | '/'
+    | '/novidades'
+    | '/privacy'
+    | '/terms'
+    | '/admin/login'
+    | '/admin/novidades'
+  id:
+    | '__root__'
+    | '/'
+    | '/novidades'
+    | '/privacy'
+    | '/terms'
+    | '/admin/login'
+    | '/admin/novidades'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +105,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminNovidadesRoute: typeof AdminNovidadesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/novidades': {
+      id: '/admin/novidades'
+      path: '/admin/novidades'
+      fullPath: '/admin/novidades'
+      preLoaderRoute: typeof AdminNovidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminNovidadesRoute: AdminNovidadesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
