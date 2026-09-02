@@ -1,15 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import { clsx } from "clsx";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { NewsCard } from "@/components/news/NewsCard";
 import {
+  fetchNovidadesPublicadas,
   formatarMesAno,
-  novidadesOrdenadas,
   type AutorNovidade,
-} from "@/data/novidades";
+  type Novidade,
+} from "@/lib/novidades";
 
 export const Route = createFileRoute("/novidades")({
   component: NovidadesPage,
@@ -39,13 +41,17 @@ const FILTROS: Filtro[] = ["Todas", "Empresa", "Diretor"];
 function NovidadesPage() {
   const [filtro, setFiltro] = useState<Filtro>("Todas");
 
-  const grupos = useMemo(() => {
-    const lista =
-      filtro === "Todas"
-        ? novidadesOrdenadas
-        : novidadesOrdenadas.filter((n) => n.autor === filtro);
+  const { data } = useQuery({
+    queryKey: ["novidades", "publicadas"],
+    queryFn: fetchNovidadesPublicadas,
+  });
 
-    const map = new Map<string, typeof lista>();
+  const grupos = useMemo(() => {
+    const todas = data ?? [];
+    const lista =
+      filtro === "Todas" ? todas : todas.filter((n) => n.autor === filtro);
+
+    const map = new Map<string, Novidade[]>();
     for (const item of lista) {
       const key = formatarMesAno(item.data);
       const bucket = map.get(key);
@@ -53,7 +59,7 @@ function NovidadesPage() {
       else map.set(key, [item]);
     }
     return Array.from(map.entries());
-  }, [filtro]);
+  }, [filtro, data]);
 
   return (
     <main className="relative min-h-screen bg-hv-bg-primary">
