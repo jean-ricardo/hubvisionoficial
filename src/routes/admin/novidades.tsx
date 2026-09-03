@@ -137,18 +137,34 @@ function AdminNovidadesPage() {
     });
   }
 
-  async function handleUpload(file: File) {
+  function abrirCropper(file: File) {
+    setErro(null);
+    if (cropSrc?.startsWith("blob:")) URL.revokeObjectURL(cropSrc);
+    setCropSrc(URL.createObjectURL(file));
+  }
+
+  function fecharCropper() {
+    if (cropSrc?.startsWith("blob:")) URL.revokeObjectURL(cropSrc);
+    setCropSrc(null);
+  }
+
+  async function handleCropAplicado(blob: Blob) {
     setEnviandoImagem(true);
     setErro(null);
     try {
+      const file = new File([blob], `capa-${Date.now()}.jpg`, {
+        type: "image/jpeg",
+      });
       const url = await uploadCapa(file);
       setForm((atual) => (atual ? { ...atual, imagemCapa: url } : atual));
+      fecharCropper();
     } catch (e) {
       setErro(e instanceof Error ? e.message : "Falha no upload da imagem.");
     } finally {
       setEnviandoImagem(false);
     }
   }
+
 
   async function sair() {
     await queryClient.cancelQueries();
