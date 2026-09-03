@@ -2,6 +2,8 @@ import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { ImageCropperModal } from "@/components/admin/ImageCropperModal";
+
 import {
   fetchTodasNovidades,
   formatarDataCompleta,
@@ -68,12 +70,14 @@ function AdminNovidadesPage() {
   const queryClient = useQueryClient();
   const [form, setForm] = useState<FormState | null>(null);
   const [enviandoImagem, setEnviandoImagem] = useState(false);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
   const [erro, setErro] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setEmail(data.user?.email ?? null));
   }, []);
+
 
   const { data, isLoading } = useQuery({
     queryKey: ["novidades", "admin"],
@@ -135,18 +139,34 @@ function AdminNovidadesPage() {
     });
   }
 
-  async function handleUpload(file: File) {
+  function abrirCropper(file: File) {
+    setErro(null);
+    if (cropSrc?.startsWith("blob:")) URL.revokeObjectURL(cropSrc);
+    setCropSrc(URL.createObjectURL(file));
+  }
+
+  function fecharCropper() {
+    if (cropSrc?.startsWith("blob:")) URL.revokeObjectURL(cropSrc);
+    setCropSrc(null);
+  }
+
+  async function handleCropAplicado(blob: Blob) {
     setEnviandoImagem(true);
     setErro(null);
     try {
+      const file = new File([blob], `capa-${Date.now()}.jpg`, {
+        type: "image/jpeg",
+      });
       const url = await uploadCapa(file);
       setForm((atual) => (atual ? { ...atual, imagemCapa: url } : atual));
+      fecharCropper();
     } catch (e) {
       setErro(e instanceof Error ? e.message : "Falha no upload da imagem.");
     } finally {
       setEnviandoImagem(false);
     }
   }
+
 
   async function sair() {
     await queryClient.cancelQueries();
@@ -268,20 +288,38 @@ function AdminNovidadesPage() {
                 accept="image/*"
                 onChange={(e) => {
                   const file = e.target.files?.[0];
-                  if (file) void handleUpload(file);
+                  if (file) abrirCropper(file);
+                  e.target.value = "";
                 }}
                 className="text-sm text-white/70"
               />
+              <p className="mt-2 text-xs text-white/40">
+                Após escolher o arquivo você define o enquadramento 16:9 antes do
+                envio.
+              </p>
               {enviandoImagem ? (
                 <p className="mt-2 text-xs text-white/50">Enviando imagem...</p>
               ) : null}
               {form.imagemCapa ? (
-                <img
-                  src={form.imagemCapa}
-                  alt="Prévia da capa"
-                  className="mt-4 aspect-video w-full max-w-xs rounded-lg object-cover"
-                />
+                <div className="mt-4 max-w-xs">
+                  <img
+                    src={form.imagemCapa}
+                    alt="Prévia da capa"
+                    className="aspect-video w-full rounded-lg object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setErro(null);
+                      setCropSrc(form.imagemCapa);
+                    }}
+                    className="mt-3 rounded-lg border border-white/15 px-4 py-2 text-xs font-semibold text-white/80 hover:text-white"
+                  >
+                    Reajustar enquadramento
+                  </button>
+                </div>
               ) : null}
+
             </div>
 
             <label className="mb-6 flex items-center gap-3 text-sm text-white/80">
@@ -378,6 +416,15 @@ function AdminNovidadesPage() {
           )}
         </div>
       </div>
+      {cropSrc && form ? (
+        <ImageCropperModal
+          src={cropSrc}
+          enviando={enviandoImagem}
+          onCancel={fecharCropper}
+          onApply={handleCropAplicado}
+        />
+      ) : null}
     </main>
+
   );
 }
