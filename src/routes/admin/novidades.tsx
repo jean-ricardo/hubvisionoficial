@@ -416,6 +416,15 @@ function AdminNovidadesPage() {
           )}
         </div>
       </div>
+      {cropSrc && form ? (
+        <ImageCropperModal
+          src={cropSrc}
+          enviando={enviandoImagem}
+          onCancel={fecharCropper}
+          onApply={handleCropAplicado}
+        />
+      ) : null}
     </main>
+
   );
 }
