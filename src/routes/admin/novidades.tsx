@@ -68,12 +68,14 @@ function AdminNovidadesPage() {
   const queryClient = useQueryClient();
   const [form, setForm] = useState<FormState | null>(null);
   const [enviandoImagem, setEnviandoImagem] = useState(false);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
   const [erro, setErro] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setEmail(data.user?.email ?? null));
   }, []);
+
 
   const { data, isLoading } = useQuery({
     queryKey: ["novidades", "admin"],
