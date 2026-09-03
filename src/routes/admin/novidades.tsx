@@ -286,20 +286,38 @@ function AdminNovidadesPage() {
                 accept="image/*"
                 onChange={(e) => {
                   const file = e.target.files?.[0];
-                  if (file) void handleUpload(file);
+                  if (file) abrirCropper(file);
+                  e.target.value = "";
                 }}
                 className="text-sm text-white/70"
               />
+              <p className="mt-2 text-xs text-white/40">
+                Após escolher o arquivo você define o enquadramento 16:9 antes do
+                envio.
+              </p>
               {enviandoImagem ? (
                 <p className="mt-2 text-xs text-white/50">Enviando imagem...</p>
               ) : null}
               {form.imagemCapa ? (
-                <img
-                  src={form.imagemCapa}
-                  alt="Prévia da capa"
-                  className="mt-4 aspect-video w-full max-w-xs rounded-lg object-cover"
-                />
+                <div className="mt-4 max-w-xs">
+                  <img
+                    src={form.imagemCapa}
+                    alt="Prévia da capa"
+                    className="aspect-video w-full rounded-lg object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setErro(null);
+                      setCropSrc(form.imagemCapa);
+                    }}
+                    className="mt-3 rounded-lg border border-white/15 px-4 py-2 text-xs font-semibold text-white/80 hover:text-white"
+                  >
+                    Reajustar enquadramento
+                  </button>
+                </div>
               ) : null}
+
             </div>
 
             <label className="mb-6 flex items-center gap-3 text-sm text-white/80">
