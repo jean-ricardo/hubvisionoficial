@@ -173,6 +173,12 @@ export const FeaturedSolutions = () => {
                     {solutions[activeTab].icon}
                   </div>
                   <div>
+                    <img
+                      src={solutions[activeTab].logoUrl}
+                      alt={solutions[activeTab].logoAlt}
+                      loading="lazy"
+                      className="h-12 md:h-16 w-auto object-contain mb-4 mx-auto md:mx-0"
+                    />
                     <h3 className="text-3xl font-bold text-hv-white mb-4">
                       {solutions[activeTab].name}
                     </h3>
