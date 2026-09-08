@@ -146,7 +146,15 @@ export const FeaturedSolutions = () => {
                       : "bg-transparent border-white/10 text-hv-text-secondary hover:border-white/30"
                   }`}
                 >
-                  {sol.name}
+                  <span className="flex flex-col items-center gap-1">
+                    <img
+                      src={sol.logoUrl}
+                      alt=""
+                      loading="lazy"
+                      className="h-5 w-auto object-contain opacity-90"
+                    />
+                    <span>{sol.name}</span>
+                  </span>
                 </button>
               ))}
             </div>
