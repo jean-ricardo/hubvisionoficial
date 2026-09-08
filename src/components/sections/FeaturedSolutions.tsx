@@ -16,6 +16,8 @@ const solutions = [
   {
     id: "hubot",
     name: "CHATBOT",
+    logoUrl: hubotLogoAsset.url,
+    logoAlt: "Logo HUBOT",
     benefit: "Chabot - A estrutura por trás de empresas que querem crescer.",
     description: "Muito mais que um chatbot. Centraliza o atendimento no WhatsApp, organiza equipes, automatiza processos e conecta sua operação a sistemas como TOTVS Protheus, CRMs e planilhas. Tudo em uma única plataforma.",
     icon: <Layout className="w-6 h-6" />,
@@ -30,6 +32,8 @@ const solutions = [
   {
     id: "horapoint",
     name: "HoraPoint",
+    logoUrl: horapointLogoAsset.url,
+    logoAlt: "Logo HoraPoint",
     benefit: "HoraPoint - Controle real sobre horas, OS e faturamento.",
     description: "Plataforma multi-tenant que unifica o ciclo de serviços, do apontamento de horas ao faturamento. O cliente aprova ou rejeita horas diretamente no portal, eliminando divergências, enquanto o sistema protege cada ordem de serviço contra alterações indevidas.",
     icon: <Clock className="w-6 h-6" />,
@@ -44,6 +48,8 @@ const solutions = [
   {
     id: "regua",
     name: "Régua de Cobrança",
+    logoUrl: reguaLogoAsset.url,
+    logoAlt: "Logo Régua de Cobrança",
     benefit: "Régua de Cobrança - O dinheiro entra no caixa no tempo certo.",
     description: "Um assistente financeiro automatizado que cobra por você. Você define os pontos exatos da régua\u00a0 3, 10, 15 dias de atraso, por exemplo\u00a0 e o sistema dispara a cobrança no WhatsApp com a 2ª via do boleto já em anexo, sempre em dias úteis.",
     icon: <Receipt className="w-6 h-6" />,
