@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import hubotDashboardAsset from "@/assets/tela-hubot.png.asset.json";
 import reguaCobrancaAsset from "@/assets/tela-regua.png.asset.json";
 import horapointAsset from "@/assets/tela-horapoint.png.asset.json";
+import hubotLogoAsset from "@/assets/hubot-light.png.asset.json";
+import horapointLogoAsset from "@/assets/horapoint-2.png.asset.json";
+import reguaLogoAsset from "@/assets/regua-cobranca.png.asset.json";
 
 
 
