@@ -1,7 +1,8 @@
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { NewsCard } from "@/components/news/NewsCard";
 import { fetchNovidadesPublicadas } from "@/lib/novidades";
 
@@ -11,7 +12,40 @@ export function News() {
     queryFn: fetchNovidadesPublicadas,
   });
 
-  const destaques = (data ?? []).slice(0, 4);
+  const destaques = (data ?? []).slice(0, 8);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateScrollState = () => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    setCanScrollLeft(scrollLeft > 2);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 2);
+  };
+
+  useEffect(() => {
+    updateScrollState();
+    const el = sliderRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [destaques.length]);
+
+  const scrollBy = (direction: 1 | -1) => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const card = el.firstElementChild as HTMLElement | null;
+    if (!card) return;
+    const gap = 24;
+    const step = card.offsetWidth + gap;
+    el.scrollBy({ left: direction * step, behavior: "smooth" });
+  };
 
   return (
     <section
@@ -48,10 +82,34 @@ export function News() {
               O que está rolando na HubVision
             </h2>
           </div>
-          <p className="max-w-md text-base leading-relaxed text-hv-text-secondary">
-            Bastidores, resultados e leituras do nosso time sobre tecnologia
-            aplicada ao negócio.
-          </p>
+          <div className="flex items-center justify-between gap-6 md:justify-end">
+            <p className="max-w-md text-base leading-relaxed text-hv-text-secondary">
+              Bastidores, resultados e leituras do nosso time sobre tecnologia
+              aplicada ao negócio.
+            </p>
+            {destaques.length > 1 && (
+              <div className="hidden shrink-0 items-center gap-2 sm:flex">
+                <button
+                  type="button"
+                  aria-label="Anterior"
+                  disabled={!canScrollLeft}
+                  onClick={() => scrollBy(-1)}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-hv-border-strong bg-hv-bg-surface text-hv-white transition-all duration-[250ms] hover:border-hv-blue-electric hover:bg-hv-bg-highlight disabled:cursor-not-allowed disabled:opacity-30 motion-reduce:transition-none"
+                >
+                  <ChevronLeft size={22} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Próximo"
+                  disabled={!canScrollRight}
+                  onClick={() => scrollBy(1)}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-hv-border-strong bg-hv-bg-surface text-hv-white transition-all duration-[250ms] hover:border-hv-blue-electric hover:bg-hv-bg-highlight disabled:cursor-not-allowed disabled:opacity-30 motion-reduce:transition-none"
+                >
+                  <ChevronRight size={22} />
+                </button>
+              </div>
+            )}
+          </div>
         </motion.div>
 
         {destaques.length === 0 ? (
@@ -59,9 +117,18 @@ export function News() {
             Novas atualizações em breve
           </p>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div
+            ref={sliderRef}
+            className="scrollbar-hide -mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 md:-mx-0 md:px-0"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {destaques.map((novidade, index) => (
-              <NewsCard key={novidade.id} novidade={novidade} index={index} />
+              <div
+                key={novidade.id}
+                className="w-[85vw] shrink-0 snap-start sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+              >
+                <NewsCard novidade={novidade} index={index} />
+              </div>
             ))}
           </div>
         )}
