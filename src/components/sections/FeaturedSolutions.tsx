@@ -153,12 +153,12 @@ export const FeaturedSolutions = () => {
                   transition={{ duration: 0.4 }}
                   className="space-y-6"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-hv-blue/20 flex items-center justify-center text-hv-blue-electric overflow-hidden">
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-hv-blue/20 flex items-center justify-center text-hv-blue-electric overflow-hidden">
                     <img
                       src={solutions[activeTab].iconUrl}
                       alt={solutions[activeTab].iconAlt}
                       loading="lazy"
-                      className="w-7 h-7 object-contain"
+                      className="w-8 h-8 md:w-10 md:h-10 object-contain"
                     />
                   </div>
                   <div>
