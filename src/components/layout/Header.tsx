@@ -69,7 +69,17 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
-        <Link to="/" className="flex items-center shrink-0">
+        <Link
+          to="/"
+          className="flex items-center shrink-0"
+          onClick={() => {
+            if (window.location.pathname === "/") {
+              const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+              window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+              setActiveId(null);
+            }
+          }}
+        >
           <img
             src={logoAsset.url}
             alt="HubVision"
