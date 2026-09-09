@@ -75,6 +75,16 @@ function NovidadesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
+            <Link to="/">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="mb-6 -ml-3 inline-flex items-center gap-2 px-3 text-sm font-medium text-hv-text-secondary transition-colors hover:text-hv-white hover:bg-hv-bg-surface"
+              >
+                <ArrowLeft size={16} />
+                Voltar para o site
+              </Button>
+            </Link>
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-hv-text-secondary">
               No radar
             </p>
