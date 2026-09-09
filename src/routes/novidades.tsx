@@ -1,17 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { clsx } from "clsx";
+import { ArrowLeft } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { NewsCard } from "@/components/news/NewsCard";
+import { Button } from "@/components/ui/button";
 import {
   fetchNovidadesPublicadas,
   formatarMesAno,
   type AutorNovidade,
   type Novidade,
 } from "@/lib/novidades";
+
 
 export const Route = createFileRoute("/novidades")({
   component: NovidadesPage,
