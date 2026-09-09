@@ -1,26 +1,20 @@
 import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ChevronRight, Layout, Clock, Receipt } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import hubotDashboardAsset from "@/assets/tela-hubot.png.asset.json";
 import reguaCobrancaAsset from "@/assets/tela-regua.png.asset.json";
 import horapointAsset from "@/assets/tela-horapoint.png.asset.json";
-import hubotLogoAsset from "@/assets/hubot-light.png.asset.json";
-import horapointLogoAsset from "@/assets/horapoint-2.png.asset.json";
-import reguaLogoAsset from "@/assets/regua-cobranca.png.asset.json";
-
-
-
+import hubotIconAsset from "@/assets/hubot-icon.png.asset.json";
+import horapointIconAsset from "@/assets/horapoint-icon.png.asset.json";
+import reguaIconAsset from "@/assets/regua-cobranca-white.png.asset.json";
 
 const solutions = [
   {
     id: "hubot",
     name: "CHATBOT",
-    logoUrl: hubotLogoAsset.url,
-    logoAlt: "Logo HUBOT",
+    iconUrl: hubotIconAsset.url,
+    iconAlt: "Ícone HUBOT",
     benefit: "Chabot - A estrutura por trás de empresas que querem crescer.",
     description: "Muito mais que um chatbot. Centraliza o atendimento no WhatsApp, organiza equipes, automatiza processos e conecta sua operação a sistemas como TOTVS Protheus, CRMs e planilhas. Tudo em uma única plataforma.",
-    icon: <Layout className="w-6 h-6" />,
     features: [
       "Atendimento multi-atendente no WhatsApp",
       "Kanban e gestão de equipe",
@@ -32,11 +26,10 @@ const solutions = [
   {
     id: "horapoint",
     name: "HoraPoint",
-    logoUrl: horapointLogoAsset.url,
-    logoAlt: "Logo HoraPoint",
+    iconUrl: horapointIconAsset.url,
+    iconAlt: "Ícone HoraPoint",
     benefit: "HoraPoint - Controle real sobre horas, OS e faturamento.",
     description: "Plataforma multi-tenant que unifica o ciclo de serviços, do apontamento de horas ao faturamento. O cliente aprova ou rejeita horas diretamente no portal, eliminando divergências, enquanto o sistema protege cada ordem de serviço contra alterações indevidas.",
-    icon: <Clock className="w-6 h-6" />,
     features: [
       "Aprovação de horas pelo cliente",
       "Bloqueio anti-fraude na OS",
@@ -48,11 +41,10 @@ const solutions = [
   {
     id: "regua",
     name: "Régua de Cobrança",
-    logoUrl: reguaLogoAsset.url,
-    logoAlt: "Logo Régua de Cobrança",
+    iconUrl: reguaIconAsset.url,
+    iconAlt: "Ícone Régua de Cobrança",
     benefit: "Régua de Cobrança - O dinheiro entra no caixa no tempo certo.",
     description: "Um assistente financeiro automatizado que cobra por você. Você define os pontos exatos da régua\u00a0 3, 10, 15 dias de atraso, por exemplo\u00a0 e o sistema dispara a cobrança no WhatsApp com a 2ª via do boleto já em anexo, sempre em dias úteis.",
-    icon: <Receipt className="w-6 h-6" />,
     features: [
       "Régua 100% personalizável",
       "Disparo automático no ponto exato",
@@ -146,15 +138,7 @@ export const FeaturedSolutions = () => {
                       : "bg-transparent border-white/10 text-hv-text-secondary hover:border-white/30"
                   }`}
                 >
-                  <span className="flex flex-col items-center gap-1">
-                    <img
-                      src={sol.logoUrl}
-                      alt=""
-                      loading="lazy"
-                      className="h-5 w-auto object-contain opacity-90"
-                    />
-                    <span>{sol.name}</span>
-                  </span>
+                  {sol.name}
                 </button>
               ))}
             </div>
@@ -169,16 +153,15 @@ export const FeaturedSolutions = () => {
                   transition={{ duration: 0.4 }}
                   className="space-y-6"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-hv-blue/20 flex items-center justify-center text-hv-blue-electric">
-                    {solutions[activeTab].icon}
+                  <div className="w-12 h-12 rounded-xl bg-hv-blue/20 flex items-center justify-center text-hv-blue-electric overflow-hidden">
+                    <img
+                      src={solutions[activeTab].iconUrl}
+                      alt={solutions[activeTab].iconAlt}
+                      loading="lazy"
+                      className="w-7 h-7 object-contain"
+                    />
                   </div>
                   <div>
-                    <img
-                      src={solutions[activeTab].logoUrl}
-                      alt={solutions[activeTab].logoAlt}
-                      loading="lazy"
-                      className="h-12 md:h-16 w-auto object-contain mb-4 mx-auto"
-                    />
                     <h3 className="text-3xl font-bold text-hv-white mb-4">
                       {solutions[activeTab].name}
                     </h3>
