@@ -13,7 +13,8 @@ export function Hero() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (window.location.pathname !== "/") {
-      window.location.href = `/#${id}`;
+      window.sessionStorage.setItem("hv-scroll-to", id);
+      window.location.href = "/";
       return;
     }
 
@@ -22,6 +23,7 @@ export function Hero() {
     const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
     window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
   }, []);
+
 
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-hv-bg-primary pt-20">
