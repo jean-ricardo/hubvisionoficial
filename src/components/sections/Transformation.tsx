@@ -76,7 +76,7 @@ export function Transformation() {
     }
   };
 
-  const active = steps[index];
+  const active = steps[index] ?? steps[0]!;
 
   return (
     <section
@@ -103,9 +103,9 @@ export function Transformation() {
           <AnimatePresence mode="wait" initial={false}>
             <motion.h2
               key={active.word}
-              initial={reduceMotion ? undefined : { opacity: 0, y: 10, filter: "blur(6px)" }}
+              initial={reduceMotion ? false : { opacity: 0, y: 10, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={reduceMotion ? undefined : { opacity: 0, y: -10, filter: "blur(6px)" }}
+              exit={reduceMotion ? {} : { opacity: 0, y: -10, filter: "blur(6px)" }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               style={{ color: active.color }}
               className="absolute whitespace-nowrap text-[clamp(2.5rem,12vw,9rem)] font-bold uppercase tracking-tighter"
@@ -119,9 +119,9 @@ export function Transformation() {
           <AnimatePresence mode="wait" initial={false}>
             <motion.p
               key={active.subtitle}
-              initial={reduceMotion ? undefined : { opacity: 0, y: 10, filter: "blur(4px)" }}
+              initial={reduceMotion ? false : { opacity: 0, y: 10, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={reduceMotion ? undefined : { opacity: 0, y: -10, filter: "blur(4px)" }}
+              exit={reduceMotion ? {} : { opacity: 0, y: -10, filter: "blur(4px)" }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="mx-auto max-w-2xl text-xl text-hv-text-secondary md:text-2xl"
             >
