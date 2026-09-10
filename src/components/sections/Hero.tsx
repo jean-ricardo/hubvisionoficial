@@ -1,9 +1,30 @@
+import { useCallback } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { openWhatsApp } from "@/lib/whatsapp";
 
+const HEADER_OFFSET = 80;
+
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
+
+  const scrollToSolutions = useCallback(() => {
+    const id = "solucoes";
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (window.location.pathname !== "/") {
+      window.sessionStorage.setItem("hv-scroll-to", id);
+      window.location.href = "/";
+      return;
+    }
+
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+    window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+  }, []);
+
+
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-hv-bg-primary pt-20">
       {/* Background Gradients & Glows */}
@@ -40,7 +61,7 @@ export function Hero() {
           <Button variant="primary" size="lg" className="w-full sm:w-auto" onClick={() => openWhatsApp()}>
             Fale conosco
           </Button>
-          <Button variant="secondary" size="lg" className="w-full sm:w-auto" onClick={() => window.location.hash = 'solutions'}>
+          <Button variant="secondary" size="lg" className="w-full sm:w-auto" onClick={scrollToSolutions}>
             Explorar
           </Button>
         </motion.div>
@@ -50,3 +71,4 @@ export function Hero() {
     </section>
   );
 }
+
