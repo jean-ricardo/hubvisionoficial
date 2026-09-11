@@ -179,10 +179,13 @@ export const FeaturedSolutions = () => {
               {solutions[activeTab] && (
                 <motion.div
                   key={activeTab}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.4 }}
+                  role="tabpanel"
+                  id={`tabpanel-${solutions[activeTab]?.id}`}
+                  aria-labelledby={`tab-${solutions[activeTab]?.id}`}
+                  initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduceMotion ? false : { opacity: 0, y: -10 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   className="space-y-6"
                 >
                   <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-hv-blue/20 flex items-center justify-center text-hv-blue-electric overflow-hidden">
