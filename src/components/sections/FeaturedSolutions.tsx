@@ -1,5 +1,5 @@
-import { useState, useRef, useMemo } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState, useRef, useMemo, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
 import hubotDashboardAsset from "@/assets/tela-hubot.png.asset.json";
 import reguaCobrancaAsset from "@/assets/tela-regua.png.asset.json";
 import horapointAsset from "@/assets/tela-horapoint.png.asset.json";
