@@ -1,5 +1,5 @@
-import { useState, useRef, useMemo } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState, useRef, useMemo, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
 import hubotDashboardAsset from "@/assets/tela-hubot.png.asset.json";
 import reguaCobrancaAsset from "@/assets/tela-regua.png.asset.json";
 import horapointAsset from "@/assets/tela-horapoint.png.asset.json";
@@ -97,10 +97,38 @@ const ParticleBackground = () => {
   );
 };
 
+const AUTOPLAY_MS = 9000;
+
 export const FeaturedSolutions = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [cycleKey, setCycleKey] = useState(0);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const reduceMotion = useReducedMotion();
+  const autoplayTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const goToTab = useCallback((idx: number) => {
+    setActiveTab(idx);
+    setCycleKey((k) => k + 1);
+  }, []);
+
+  const handleManualClick = (idx: number) => {
+    goToTab(idx);
+  };
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    if (!isInView) return;
+
+    autoplayTimer.current = setTimeout(() => {
+      setActiveTab((prev) => (prev + 1) % solutions.length);
+      setCycleKey((k) => k + 1);
+    }, AUTOPLAY_MS);
+
+    return () => {
+      if (autoplayTimer.current) clearTimeout(autoplayTimer.current);
+    };
+  }, [activeTab, cycleKey, isInView, reduceMotion]);
 
   return (
     <section id="plataformas" ref={sectionRef} className="bg-hv-bg-surface py-24 px-6 overflow-hidden">
@@ -127,11 +155,15 @@ export const FeaturedSolutions = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content Column */}
           <div className="space-y-8">
-            <div className="flex flex-wrap gap-2 md:gap-4 mb-8">
+            <div className="flex flex-wrap gap-2 md:gap-4 mb-8" role="tablist" aria-label="Plataformas Hubvision">
               {solutions.map((sol, idx) => (
                 <button
                   key={sol.id}
-                  onClick={() => setActiveTab(idx)}
+                  role="tab"
+                  aria-selected={activeTab === idx}
+                  aria-controls={`tabpanel-${sol.id}`}
+                  id={`tab-${sol.id}`}
+                  onClick={() => handleManualClick(idx)}
                   className={`flex-1 min-w-[100px] md:flex-none px-4 md:px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 border ${
                     activeTab === idx
                       ? "bg-hv-blue border-hv-blue-electric text-hv-white shadow-[0_0_20px_rgba(40,88,216,0.3)]"
@@ -147,10 +179,13 @@ export const FeaturedSolutions = () => {
               {solutions[activeTab] && (
                 <motion.div
                   key={activeTab}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.4 }}
+                  role="tabpanel"
+                  id={`tabpanel-${solutions[activeTab]?.id}`}
+                  aria-labelledby={`tab-${solutions[activeTab]?.id}`}
+                  initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   className="space-y-6"
                 >
                   <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-hv-blue/20 flex items-center justify-center text-hv-blue-electric overflow-hidden">
