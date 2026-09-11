@@ -182,9 +182,9 @@ export const FeaturedSolutions = () => {
                   role="tabpanel"
                   id={`tabpanel-${solutions[activeTab]?.id}`}
                   aria-labelledby={`tab-${solutions[activeTab]?.id}`}
-                  initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                  initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={reduceMotion ? false : { opacity: 0, y: -10 }}
+                  exit={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   className="space-y-6"
                 >
