@@ -130,6 +130,27 @@
   }
 }
 
+/* Anel de progresso da narrativa (100% CSS, reiniciado via key do React) */
+@keyframes hv-ring-progress {
+  from {
+    stroke-dashoffset: 87.96;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hv-ring-progress {
+  stroke-dasharray: 87.96;
+  stroke-dashoffset: 87.96;
+  animation: hv-ring-progress var(--hv-ring-duration, 4500ms) linear forwards;
+}
+
+.hv-ring-progress[data-paused="true"] {
+  animation-play-state: paused;
+}
+
+
 .hv-marquee-track {
   animation: hv-marquee 55s linear infinite;
   will-change: transform;

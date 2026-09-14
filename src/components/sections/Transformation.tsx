@@ -30,53 +30,76 @@ const steps = [
 export function Transformation() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef, { amount: 0.4 });
+  const inView = useInView(sectionRef, { amount: 0.3 });
 
   const [index, setIndex] = useState(0);
-  const [autoplay, setAutoplay] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [cycleKey, setCycleKey] = useState(0);
-  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const running = !reduceMotion && autoplay && inView;
+  const indexRef = useRef(0);
+  const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const resumeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const running = !reduceMotion && !paused && inView;
+
+  const clearTick = useCallback(() => {
+    if (tickRef.current) {
+      clearInterval(tickRef.current);
+      tickRef.current = null;
+    }
+  }, []);
+
+  const clearResume = useCallback(() => {
+    if (resumeRef.current) {
+      clearTimeout(resumeRef.current);
+      resumeRef.current = null;
+    }
+  }, []);
+
+  // Um único interval ativo por vez, controlado por refs (imune a re-renders)
   useEffect(() => {
+    clearTick();
     if (!running) return;
-    const id = setTimeout(() => {
-      setIndex((i) => (i + 1) % steps.length);
+    tickRef.current = setInterval(() => {
+      indexRef.current = (indexRef.current + 1) % steps.length;
+      setIndex(indexRef.current);
       setCycleKey((k) => k + 1);
     }, DWELL_MS);
-    return () => clearTimeout(id);
-  }, [running, index, cycleKey]);
-
-  const pause = useCallback(() => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    setAutoplay(false);
-  }, []);
-
-  const scheduleResume = useCallback(() => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => {
-      setAutoplay(true);
-      setCycleKey((k) => k + 1);
-    }, RESUME_MS);
-  }, []);
+    return clearTick;
+  }, [running, clearTick]);
 
   useEffect(
     () => () => {
-      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+      clearTick();
+      clearResume();
     },
-    [],
+    [clearTick, clearResume],
   );
 
+  const pause = useCallback(() => {
+    clearResume();
+    setPaused(true);
+  }, [clearResume]);
+
+  const scheduleResume = useCallback(() => {
+    clearResume();
+    resumeRef.current = setTimeout(() => {
+      resumeRef.current = null;
+      setPaused(false);
+      setCycleKey((k) => k + 1);
+    }, RESUME_MS);
+  }, [clearResume]);
+
   const goTo = (i: number) => {
+    clearResume();
+    indexRef.current = i;
     setIndex(i);
     setCycleKey((k) => k + 1);
-    if (!reduceMotion) {
-      setAutoplay(true);
-    }
+    setPaused(false);
   };
 
   const active = steps[index] ?? steps[0]!;
+
 
   return (
     <section
