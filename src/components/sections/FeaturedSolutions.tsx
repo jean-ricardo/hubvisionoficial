@@ -97,15 +97,18 @@ const ParticleBackground = () => {
   );
 };
 
-const AUTOPLAY_MS = 9000;
+const AUTOPLAY_MS = 5000;
+const RESUME_DELAY_MS = 4000;
 
 export const FeaturedSolutions = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [cycleKey, setCycleKey] = useState(0);
+  const [paused, setPaused] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const reduceMotion = useReducedMotion();
   const autoplayTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const goToTab = useCallback((idx: number) => {
     setActiveTab(idx);
@@ -116,8 +119,30 @@ export const FeaturedSolutions = () => {
     goToTab(idx);
   };
 
-  useEffect(() => {
+  const handleMouseEnter = useCallback(() => {
     if (reduceMotion) return;
+    if (resumeTimer.current) {
+      clearTimeout(resumeTimer.current);
+      resumeTimer.current = null;
+    }
+    setPaused(true);
+  }, [reduceMotion]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (reduceMotion) return;
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => {
+      resumeTimer.current = null;
+      setPaused(false);
+      // Reinicia a contagem completa da aba atual ao retomar.
+      setCycleKey((k) => k + 1);
+    }, RESUME_DELAY_MS);
+  }, [reduceMotion]);
+
+  // Único timer de autoplay por vez: limpo e recriado a cada mudança
+  // de aba, ciclo, pausa ou visibilidade da seção.
+  useEffect(() => {
+    if (reduceMotion || paused) return;
     if (!isInView) return;
 
     autoplayTimer.current = setTimeout(() => {
@@ -126,9 +151,19 @@ export const FeaturedSolutions = () => {
     }, AUTOPLAY_MS);
 
     return () => {
-      if (autoplayTimer.current) clearTimeout(autoplayTimer.current);
+      if (autoplayTimer.current) {
+        clearTimeout(autoplayTimer.current);
+        autoplayTimer.current = null;
+      }
     };
-  }, [activeTab, cycleKey, isInView, reduceMotion]);
+  }, [activeTab, cycleKey, paused, isInView, reduceMotion]);
+
+  // Limpa o timer de retomada ao desmontar.
+  useEffect(() => {
+    return () => {
+      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    };
+  }, []);
 
   return (
     <section id="plataformas" ref={sectionRef} className="bg-hv-bg-surface py-24 px-6 overflow-hidden">
@@ -152,7 +187,11 @@ export const FeaturedSolutions = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {/* Content Column */}
           <div className="space-y-8">
             <div className="flex flex-wrap gap-2 md:gap-4 mb-8" role="tablist" aria-label="Plataformas Hubvision">
