@@ -187,7 +187,11 @@ export const FeaturedSolutions = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {/* Content Column */}
           <div className="space-y-8">
             <div className="flex flex-wrap gap-2 md:gap-4 mb-8" role="tablist" aria-label="Plataformas Hubvision">
