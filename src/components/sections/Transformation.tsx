@@ -167,20 +167,20 @@ export function Transformation() {
                 {i === index && !reduceMotion && (
                   <svg className="absolute h-7 w-7 -rotate-90" viewBox="0 0 32 32" aria-hidden="true">
                     <circle cx="16" cy="16" r="14" fill="none" strokeWidth="2" className="stroke-hv-white/10" />
-                    <motion.circle
-                      key={`${index}-${cycleKey}-${running}`}
-                      cx="16"
-                      cy="16"
-                      r="14"
-                      fill="none"
-                      strokeWidth="2"
-                      stroke="var(--hv-blue-electric)"
-                      strokeLinecap="round"
-                      pathLength={1}
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: running ? 1 : 0.001 }}
-                      transition={{ duration: running ? DWELL_MS / 1000 : 0, ease: "linear" }}
-                    />
+                    {running && (
+                      <circle
+                        key={`${index}-${cycleKey}`}
+                        cx="16"
+                        cy="16"
+                        r="14"
+                        fill="none"
+                        strokeWidth="2"
+                        stroke="var(--hv-blue-electric)"
+                        strokeLinecap="round"
+                        className="hv-ring-progress"
+                        style={{ ["--hv-ring-duration" as string]: `${DWELL_MS}ms` }}
+                      />
+                    )}
                   </svg>
                 )}
                 <span
