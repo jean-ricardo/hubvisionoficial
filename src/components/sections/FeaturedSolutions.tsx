@@ -99,7 +99,7 @@ const ParticleBackground = () => {
   );
 };
 
-const AUTOPLAY_MS = 5000;
+const AUTOPLAY_MS = 4000;
 const RESUME_DELAY_MS = 4000;
 
 export const FeaturedSolutions = () => {
