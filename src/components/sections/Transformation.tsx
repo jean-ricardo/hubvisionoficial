@@ -9,22 +9,18 @@ const RESUME_MS = 4000;
 const steps = [
   {
     word: "IDEIA",
-    color: "var(--hv-white)",
     subtitle: "Tudo começa com uma provocação: e se esse processo pudesse ser mais simples?",
   },
   {
     word: "TECNOLOGIA",
-    color: "var(--hv-blue-electric)",
     subtitle: "Escolhemos as ferramentas certas e desenhamos a arquitetura que sustenta a ideia.",
   },
   {
     word: "SOLUÇÃO",
-    color: "var(--hv-white)",
     subtitle: "Construímos algo aplicável, escalável e pronto para o dia a dia do negócio.",
   },
   {
     word: "RESULTADO",
-    color: "#F5A623",
     subtitle: "Eficiência que aparece nos números, no tempo da equipe e na experiência do cliente.",
   },
 ];
@@ -140,8 +136,7 @@ export function Transformation() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={reduceMotion ? {} : { opacity: 0, y: -10, filter: "blur(6px)" }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              style={{ color: active.color }}
-              className="absolute whitespace-nowrap text-[clamp(2.5rem,12vw,9rem)] font-bold uppercase tracking-tighter"
+              className="absolute whitespace-nowrap text-[clamp(2.5rem,12vw,9rem)] font-bold uppercase tracking-tighter text-hv-white"
             >
               {active.word}
             </motion.h2>
