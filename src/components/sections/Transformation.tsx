@@ -136,8 +136,7 @@ export function Transformation() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={reduceMotion ? {} : { opacity: 0, y: -10, filter: "blur(6px)" }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              style={{ color: active.color }}
-              className="absolute whitespace-nowrap text-[clamp(2.5rem,12vw,9rem)] font-bold uppercase tracking-tighter"
+              className="absolute whitespace-nowrap text-[clamp(2.5rem,12vw,9rem)] font-bold uppercase tracking-tighter text-hv-white"
             >
               {active.word}
             </motion.h2>
