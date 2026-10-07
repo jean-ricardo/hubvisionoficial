@@ -1,5 +1,7 @@
+import type React from "react";
 import { useState, useRef, useMemo, useEffect, useCallback } from "react";
-import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useInViewport } from "@/hooks/use-in-viewport";
 import hubotDashboardAsset from "@/assets/tela-hubot.png.asset.json";
 import reguaCobrancaAsset from "@/assets/tela-regua.png.asset.json";
 import horapointAsset from "@/assets/tela-horapoint.png.asset.json";
@@ -104,8 +106,11 @@ export const FeaturedSolutions = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [cycleKey, setCycleKey] = useState(0);
   const [paused, setPaused] = useState(false);
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const revealRef = useRef(false);
+  const isVisible = useInViewport(sectionRef, 0.3);
+  if (isVisible) revealRef.current = true;
+  const isInView = revealRef.current;
   const reduceMotion = useReducedMotion();
   const autoplayTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -119,8 +124,8 @@ export const FeaturedSolutions = () => {
     goToTab(idx);
   };
 
-  const handleMouseEnter = useCallback(() => {
-    if (reduceMotion) return;
+  const handleMouseEnter = useCallback((e: React.PointerEvent) => {
+    if (reduceMotion || e.pointerType !== "mouse") return;
     if (resumeTimer.current) {
       clearTimeout(resumeTimer.current);
       resumeTimer.current = null;
@@ -143,7 +148,7 @@ export const FeaturedSolutions = () => {
   // de aba, ciclo, pausa ou visibilidade da seção.
   useEffect(() => {
     if (reduceMotion || paused) return;
-    if (!isInView) return;
+    if (!isVisible) return;
 
     autoplayTimer.current = setTimeout(() => {
       setActiveTab((prev) => (prev + 1) % solutions.length);
@@ -156,7 +161,7 @@ export const FeaturedSolutions = () => {
         autoplayTimer.current = null;
       }
     };
-  }, [activeTab, cycleKey, paused, isInView, reduceMotion]);
+  }, [activeTab, cycleKey, paused, isVisible, reduceMotion]);
 
   // Limpa o timer de retomada ao desmontar.
   useEffect(() => {
@@ -189,7 +194,7 @@ export const FeaturedSolutions = () => {
 
         <div
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-          onMouseEnter={handleMouseEnter}
+          onPointerMove={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           {/* Content Column */}
