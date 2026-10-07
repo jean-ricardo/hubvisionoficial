@@ -1,4 +1,6 @@
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useInViewport } from "@/hooks/use-in-viewport";
+import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const DWELL_MS = 4500;
@@ -30,7 +32,7 @@ const steps = [
 export function Transformation() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef, { amount: 0.3 });
+  const inView = useInViewport(sectionRef, 0.3);
 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -76,10 +78,18 @@ export function Transformation() {
     [clearTick, clearResume],
   );
 
+  // Pausa só com movimento real do ponteiro (rolar a página sob o cursor
+  // dispara mouseenter e travava o autoplay até um clique).
   const pause = useCallback(() => {
     clearResume();
     setPaused(true);
   }, [clearResume]);
+  const onPointerMove = useCallback(
+    (e: React.PointerEvent) => {
+      if (e.pointerType === "mouse") pause();
+    },
+    [pause],
+  );
 
   const scheduleResume = useCallback(() => {
     clearResume();
@@ -104,7 +114,7 @@ export function Transformation() {
   return (
     <section
       ref={sectionRef}
-      onMouseEnter={pause}
+      onPointerMove={onPointerMove}
       onMouseLeave={scheduleResume}
       onTouchStart={pause}
       onTouchEnd={scheduleResume}
